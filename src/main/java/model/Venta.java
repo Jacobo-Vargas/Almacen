@@ -1,23 +1,29 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Venta {
     private final String codigo;
     private final LocalDate fechaVenta;
-    private static List<DetalleVenta> detalleVenta;
+    private List<DetalleVenta> detalleVenta = new ArrayList<>();
     private final Cliente cliente;
     private float total;
     private float iva;
 
-    public Venta(String codigo, LocalDate fechaVenta, List<DetalleVenta> detalleVenta, Cliente cliente, float total, float iva) {
+    public Venta(String codigo, LocalDate fechaVenta,Cliente cliente, float iva) {
         this.codigo = codigo;
         this.fechaVenta = fechaVenta;
-        Venta.detalleVenta = detalleVenta;
         this.cliente = cliente;
-        this.total = total;
+        this.total = calcularTotal();
         this.iva = iva;
+    }
+
+    public float calcularTotal() {
+        float monto = (float) detalleVenta.stream().mapToDouble(DetalleVenta::getSubtotal).sum();
+        return ((monto*(iva/100))+monto);
     }
 
     public String getCodigo() {
@@ -33,7 +39,7 @@ public class Venta {
     }
 
     public void setDetalleVenta(List<DetalleVenta> detalleVenta) {
-        Venta.detalleVenta = detalleVenta;
+        this.detalleVenta = detalleVenta;
     }
 
     public Cliente getCliente() {

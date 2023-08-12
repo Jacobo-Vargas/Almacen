@@ -5,10 +5,25 @@ public class DetalleVenta {
     private float subtotal;
     private Producto productoVendido;
 
-    public DetalleVenta(int cantidadProductos, float subtotal, Producto productoVendido) {
+    public DetalleVenta(int cantidadProductos,Producto productoVendido) {
         this.cantidadProductos = cantidadProductos;
-        this.subtotal = subtotal;
+        this.subtotal = subtotal();
         this.productoVendido = productoVendido;
+    }
+
+    public boolean consultarDisponibilidad(){
+        if((productoVendido.getCantidadExistente()) >= cantidadProductos){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public float subtotal(){
+        if(consultarDisponibilidad()){
+            return productoVendido.getValorUnitario()*cantidadProductos;
+        }else{
+            return 0;
+        }
     }
 
     public int getCantidadProductos() {

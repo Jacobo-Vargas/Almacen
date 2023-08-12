@@ -1,2 +1,3 @@
 module Almacen {
+    exports model;
 }

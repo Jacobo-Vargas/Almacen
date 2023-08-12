@@ -7,7 +7,7 @@ public class Producto {
     private float valorUnitario;
     private int cantidadExistente;
 
-    public Producto(String codigoProducto, String nombreProducto, String descripcionProducto, float valorUnitario, int cantidadExistente) {
+    protected Producto(String codigoProducto, String nombreProducto, String descripcionProducto, float valorUnitario, int cantidadExistente) {
         this.codigoProducto = codigoProducto;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
