@@ -1,6 +1,16 @@
 package org.example;
 
-import model.*;
+import model.Almacen;
+import model.AlmacenInstance;
+import model.ClientePersonaJuridica;
+import model.ClientePersonaNatural;
+import model.DetalleVenta;
+import model.PaisOrigen;
+import model.ProductoEnvasado;
+import model.ProductoPerecedero;
+import model.ProductoRefrigerado;
+import model.Venta;
+
 import java.time.LocalDate;
 
 public class Main {
