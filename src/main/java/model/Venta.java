@@ -17,14 +17,14 @@ public class Venta {
         this.codigoVenta = codigoVenta;
         this.fechaVenta = fechaVenta;
         this.cliente = cliente;
-        this.total = calcularTotal();
         this.iva = iva;
     }
 
     public float calcularTotal() {
-        float monto = (float) detalleVenta.stream().mapToDouble(DetalleVenta::getSubtotal).sum();
-        return ((monto*(iva/100))+monto);
+        total = (float) detalleVenta.stream().mapToDouble(DetalleVenta::getSubtotal).sum();
+        return ((total*(iva/100))+total);
     }
+
 
     public String getCodigo() {
         return codigoVenta;
@@ -60,5 +60,17 @@ public class Venta {
 
     public void setIva(float iva) {
         this.iva = iva;
+    }
+
+    @Override
+    public String toString() {
+        return "Venta{" +
+                "codigoVenta='" + codigoVenta + '\'' +
+                ", fechaVenta=" + fechaVenta +
+                ", detalleVenta=" + detalleVenta +
+                ", cliente=" + cliente +
+                ", total=" + total +
+                ", iva=" + iva +
+                '}';
     }
 }

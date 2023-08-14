@@ -28,7 +28,7 @@ public class Almacen {
     }
 
     public Producto obtenerProducto(String codigoProducto) {
-        for (Producto p : getListProductos()) {
+        for (Producto p : listProductos) {
             if (p.getCodigoProducto().equals(codigoProducto)) {
                 return p;
             }
@@ -37,13 +37,9 @@ public class Almacen {
     }
 
     public void venderProducto(Venta venta) {
-        descontarProductosComprados();
         listVentas.add(venta);
     }
 
-    public void descontarProductosComprados() {
-
-    }
 
     public void registrarCliente(Cliente cliente) {
 
@@ -81,5 +77,14 @@ public class Almacen {
 
     public List<Cliente> getListClientes() {
         return listClientes;
+    }
+
+    @Override
+    public String toString() {
+        return "Almacen{" +
+                "listVentas=" + listVentas +
+                ", listProductos=" + listProductos +
+                ", listClientes=" + listClientes +
+                '}';
     }
 }

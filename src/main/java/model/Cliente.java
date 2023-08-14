@@ -60,4 +60,16 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nombreCliente='" + nombreCliente + '\'' +
+                ", apellidoUno='" + apellidoUno + '\'' +
+                ", apellidoDos='" + apellidoDos + '\'' +
+                ", numeroIdentificacion='" + numeroIdentificacion + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
+    }
 }

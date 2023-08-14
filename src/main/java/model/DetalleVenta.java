@@ -7,7 +7,6 @@ public class DetalleVenta {
 
     public DetalleVenta(int cantidadProductos,Producto productoVendido) {
         this.cantidadProductos = cantidadProductos;
-        this.subtotal = subtotalPagar();
         this.productoVendido = productoVendido;
     }
 
@@ -20,12 +19,22 @@ public class DetalleVenta {
                 .anyMatch(producto -> producto.getCantidadExistente() >= cantidadProductos);
 
     }
+
+    public void descontarProductos(){
+        for (Producto p: AlmacenInstance.INSTANCE.getAlmacen().getListProductos()) {
+            if(p.getCodigoProducto().equals(productoVendido.getCodigoProducto())){
+                p.setCantidadExistente(p.getCantidadExistente()-cantidadProductos);
+            }
+        }
+    }
     public float subtotalPagar(){
         if(consultarDisponibilidad()){
-            return productoVendido.getValorUnitario()*cantidadProductos;
+            descontarProductos();
+            subtotal = productoVendido.getValorUnitario()*cantidadProductos;
         }else{
-            return 0;
+            subtotal = 0;
         }
+        return subtotal;
     }
 
     public int getCantidadProductos() {
@@ -37,7 +46,7 @@ public class DetalleVenta {
     }
 
     public float getSubtotal() {
-        return subtotal;
+        return subtotalPagar();
     }
 
     public void setSubtotal(float subtotal) {
@@ -50,5 +59,14 @@ public class DetalleVenta {
 
     public void setProductoVendido(Producto productoVendido) {
         this.productoVendido = productoVendido;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalleVenta{" +
+                "cantidadProductos=" + cantidadProductos +
+                ", subtotal=" + subtotal +
+                ", productoVendido=" + productoVendido +
+                '\n'+'}' ;
     }
 }
