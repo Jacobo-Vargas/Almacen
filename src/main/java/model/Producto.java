@@ -46,4 +46,15 @@ public class Producto {
     public void setCantidadExistente(int cantidadExistente) {
         this.cantidadExistente = cantidadExistente;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "codigoProducto='" + codigoProducto + '\'' +
+                ", nombreProducto='" + nombreProducto + '\'' +
+                ", descripcionProducto='" + descripcionProducto + '\'' +
+                ", valorUnitario=" + valorUnitario +
+                ", cantidadExistente=" + cantidadExistente +
+                '}';
+    }
 }

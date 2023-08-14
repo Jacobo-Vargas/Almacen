@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Almacen {
-    private static List<Venta> listVentas = new ArrayList<>();
-    private static List<Producto> listProductos = new ArrayList<>();
-    private static List<Cliente> listClientes = new ArrayList<>();
+    private List<Venta> listVentas = new ArrayList<>();
+    private List<Producto> listProductos = new ArrayList<>();
+    private List<Cliente> listClientes = new ArrayList<>();
 
     public Almacen() {
     }
 
     public void registrarProducto(Producto producto) {
         try {
-            if (listProductos.stream().anyMatch(producto1 -> producto1.getCodigoProducto().equals(producto.getCodigoProducto()))) {
+            if (getListProductos().stream().anyMatch(producto1 -> producto1.getCodigoProducto().equals(producto.getCodigoProducto()))) {
                 System.out.println("El codigo ya existe");
             } else {
+                System.out.println("Se agrego");
                 listProductos.add(producto);
             }
 
@@ -23,6 +24,24 @@ public class Almacen {
             System.out.println(e.getMessage());
 
         }
+
+    }
+
+    public Producto obtenerProducto(String codigoProducto) {
+        for (Producto p : getListProductos()) {
+            if (p.getCodigoProducto().equals(codigoProducto)) {
+                return p;
+            }
+        }
+        throw new RuntimeException("No encontrado" + codigoProducto);
+    }
+
+    public void venderProducto(Venta venta) {
+        descontarProductosComprados();
+        listVentas.add(venta);
+    }
+
+    public void descontarProductosComprados() {
 
     }
 
@@ -39,31 +58,28 @@ public class Almacen {
         }
     }
 
-    public void venderProducto(Venta venta) {
-        listVentas.add(venta);
+    public Cliente buscarClientePorCedula(String cedula) {
+        Cliente cliente = null;
+        for (Cliente c : listClientes) {
+            if (c.getNumeroIdentificacion().equals(cedula)) {
+                cliente = c;
+                System.out.println("si existe");
+                return cliente;
+
+            }
+        }
+        return cliente;
     }
 
-    public static List<Venta> getListVentas() {
+    public List<Venta> getListVentas() {
         return listVentas;
     }
 
-    public static void setListVentas(List<Venta> listVentas) {
-        Almacen.listVentas = listVentas;
-    }
-
-    public static List<Producto> getListProductos() {
+    public List<Producto> getListProductos() {
         return listProductos;
     }
 
-    public static void setListProductos(List<Producto> listProductos) {
-        Almacen.listProductos = listProductos;
-    }
-
-    public static List<Cliente> getListCliente() {
+    public List<Cliente> getListClientes() {
         return listClientes;
-    }
-
-    public static void setListCliente(List<Cliente> listCliente) {
-        Almacen.listClientes = listCliente;
     }
 }

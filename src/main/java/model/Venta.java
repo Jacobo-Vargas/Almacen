@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class Venta {
-    private final String codigo;
+    private final String codigoVenta;
     private final LocalDate fechaVenta;
     private List<DetalleVenta> detalleVenta = new ArrayList<>();
     private final Cliente cliente;
     private float total;
     private float iva;
 
-    public Venta(String codigo, LocalDate fechaVenta,Cliente cliente, float iva) {
-        this.codigo = codigo;
+    public Venta(String codigoVenta, LocalDate fechaVenta,Cliente cliente, float iva) {
+        this.codigoVenta = codigoVenta;
         this.fechaVenta = fechaVenta;
         this.cliente = cliente;
         this.total = calcularTotal();
@@ -27,7 +27,7 @@ public class Venta {
     }
 
     public String getCodigo() {
-        return codigo;
+        return codigoVenta;
     }
 
     public LocalDate getFechaVenta() {

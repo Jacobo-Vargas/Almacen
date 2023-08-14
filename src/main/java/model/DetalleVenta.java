@@ -7,18 +7,20 @@ public class DetalleVenta {
 
     public DetalleVenta(int cantidadProductos,Producto productoVendido) {
         this.cantidadProductos = cantidadProductos;
-        this.subtotal = subtotal();
+        this.subtotal = subtotalPagar();
         this.productoVendido = productoVendido;
     }
 
-    public boolean consultarDisponibilidad(){
-        if((productoVendido.getCantidadExistente()) >= cantidadProductos){
-            return true;
-        }else{
-            return false;
-        }
+    public boolean consultarDisponibilidad() {
+
+        return AlmacenInstance.INSTANCE.getAlmacen()
+                .getListProductos()
+                .stream()
+                .filter(producto -> producto.getCodigoProducto().equals(productoVendido.getCodigoProducto()))
+                .anyMatch(producto -> producto.getCantidadExistente() >= cantidadProductos);
+
     }
-    public float subtotal(){
+    public float subtotalPagar(){
         if(consultarDisponibilidad()){
             return productoVendido.getValorUnitario()*cantidadProductos;
         }else{
