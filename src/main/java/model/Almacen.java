@@ -26,7 +26,8 @@ public class Almacen {
         }
 
     }
-    public void eliminarClienteIdentificacion(String numeroIdentificacion){
+    public void eliminarClienteIdentificacion(String numeroIdentificacion){//Metodo para eliminar cliente
+        // de la lista Cliente
         boolean respuesta=false;
         try{
             for (int i=0;i<listClientes.size();i++){
@@ -44,7 +45,8 @@ public class Almacen {
         }
     }
 
-    public void eliminarProductoCodigo(String codigo){
+    public void eliminarProductoCodigo(String codigo){//metodo para eliminar un producto por medio del codogo,
+        // elimina de la lista producto
         boolean respuesta=false;
         try {
             for(int i=0;i<listProductos.size();i++){
@@ -61,7 +63,7 @@ public class Almacen {
             System.out.println(e.getMessage());
         }
     }
-    public void eliminarVenta(String codigo){
+    public void eliminarVenta(String codigo){//metodo para eliminar las ventas registradas, las elimina de las listas
         boolean respuesta=false;
         try{
             for(int i=0; i<listVentas.size();i++){
@@ -78,7 +80,7 @@ public class Almacen {
             System.out.println(e.getMessage());
         }
     }
-    public Venta buscarVentaCodigo(String codigoVenta){
+    public Venta buscarVentaCodigo(String codigoVenta){//metodo para la busqueda de una venta mediante su codigo
         boolean respuesta=false;
         try {
             for(int i=0;i<listVentas.size();i++){
