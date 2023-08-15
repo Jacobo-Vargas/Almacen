@@ -26,6 +26,74 @@ public class Almacen {
         }
 
     }
+    public void eliminarClienteIdentificacion(String numeroIdentificacion){
+        boolean respuesta=false;
+        try{
+            for (int i=0;i<listClientes.size();i++){
+                if (listClientes.get(i).getNumeroIdentificacion().equals(numeroIdentificacion)){
+                    respuesta=true;
+                    listClientes.remove(listClientes.get(i));
+                }
+            }
+            if(respuesta==false){
+                System.out.println("Cliente no encontrad0");
+            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    public void eliminarProductoCodigo(String codigo){
+        boolean respuesta=false;
+        try {
+            for(int i=0;i<listProductos.size();i++){
+                if(listProductos.get(i).getCodigoProducto().equals(codigo)){
+                    listProductos.remove(listVentas.get(i));
+                    respuesta=true;
+                }
+            }
+            if(respuesta==false){
+                System.out.println("producto no encontrado");
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void eliminarVenta(String codigo){
+        boolean respuesta=false;
+        try{
+            for(int i=0; i<listVentas.size();i++){
+                if(listVentas.get(i).getCodigo().equals(codigo)){
+                    listVentas.remove(listVentas.get(i));
+                    System.out.println("venta elimida");
+                    respuesta=true;
+                }
+            }
+            if(respuesta==false){
+                System.out.println("venta no encontrada");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public Venta buscarVentaCodigo(String codigoVenta){
+        boolean respuesta=false;
+        try {
+            for(int i=0;i<listVentas.size();i++){
+                if(listVentas.get(i).getCodigo().equals(codigoVenta)){
+                    return listVentas.get(i);
+                }
+            }
+            if(respuesta==false){
+                System.out.println("venta no encontrada");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
     public Producto obtenerProducto(String codigoProducto) {
         for (Producto p : listProductos) {
