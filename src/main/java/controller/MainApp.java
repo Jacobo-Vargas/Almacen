@@ -18,8 +18,8 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/MainApp.fxml")));
-        primaryStage.setTitle("Bienvenida");
-        primaryStage.setScene(new Scene(root,600,350));
+        primaryStage.setTitle("Almacen");
+        primaryStage.setScene(new Scene(root,750,500));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
