@@ -28,15 +28,12 @@ public class Main {
         almacen.registrarProducto(new ProductoPerecedero("03","atun","Atun en aceite",7500,15,LocalDate.of(2024,5,24)));
 
 
-
-
-
         // se añaden productos a canasta
         DetalleVenta detalle = new DetalleVenta(2,almacen.obtenerProducto("01"));
         DetalleVenta detalle1 = new DetalleVenta(2, almacen.obtenerProducto("03"));
 
         //se llevan a caja y se procesa venta
-        Venta venta = new Venta("01",LocalDate.now(), almacen.buscarClientePorCedula("1094958613"), 19);
+        Venta venta = new Venta(almacen.buscarClientePorCedula("1094958613"), 19);
 
         //se confirma compra
         venta.getDetalleVenta().add(detalle);

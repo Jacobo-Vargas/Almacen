@@ -2,8 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,43 +14,75 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="469.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VentasController">
    <children>
       <VBox prefHeight="469.0" prefWidth="751.0">
          <children>
-            <GridPane prefHeight="200.0" prefWidth="751.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <VBox.margin>
-                  <Insets bottom="3.0" top="5.0" />
-               </VBox.margin>
-            </GridPane>
-            <HBox prefHeight="57.0" prefWidth="751.0">
+            <HBox alignment="CENTER" prefHeight="218.0" prefWidth="747.0">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="219.0" prefWidth="389.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="132.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="256.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Producto: " GridPane.rowIndex="1" />
+                        <Label prefHeight="16.0" prefWidth="70.0" text="Cantidad:" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="productosComboBox" onAction="#productoSeleccionado" prefHeight="27.0" prefWidth="264.0" promptText="seleccione un producto" visibleRowCount="100" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="cantidadProductos" alignment="TOP_LEFT" prefHeight="19.0" prefWidth="202.0" promptText="Digite la cantidad" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets right="50.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label text="Cliente: " />
+                        <ComboBox fx:id="clientesComboBox" onAction="#clienteSeleccionado" prefHeight="27.0" prefWidth="255.0" promptText="seleccione un cliente" visibleRowCount="100" GridPane.columnIndex="1" />
+                        <Label text="Total: " GridPane.rowIndex="3" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="8.0" />
+                     </padding>
+                     <opaqueInsets>
+                        <Insets right="5.0" />
+                     </opaqueInsets>
+                  </GridPane>
+                  <TableView fx:id="tablaDetalle" prefHeight="213.0" prefWidth="370.0">
+                    <columns>
+                        <TableColumn fx:id="columnaCodigoPoducto" prefWidth="75.0" text="Codigo" />
+                      <TableColumn fx:id="columnaProducto" prefWidth="96.00003051757812" text="Producto" />
+                      <TableColumn fx:id="columnaCantidad" prefWidth="87.0" text="Cantidad " />
+                        <TableColumn fx:id="columnaSubtotal" prefWidth="85.0" text="Subtotal" />
+                    </columns>
+                     <padding>
+                        <Insets left="3.0" />
+                     </padding>
+                  </TableView>
+               </children>
+            </HBox>
+            <HBox prefHeight="64.0" prefWidth="747.0">
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>
                <children>
-                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Añadir">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding></Button>
                </children>
             </HBox>
-            <TableView prefHeight="262.0" prefWidth="751.0">
+            <TableView fx:id="tablaVentas" prefHeight="197.0" prefWidth="747.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Codigo" />
                 <TableColumn prefWidth="159.0" text="Fecha" />
                   <TableColumn prefWidth="177.0" text="Cliente" />
                   <TableColumn prefWidth="116.0" text="Total" />
                   <TableColumn prefWidth="115.0" text="Iva" />
-                  <TableColumn prefWidth="109.0" text="Detalle" />
               </columns>
                <VBox.margin>
                   <Insets />
@@ -57,6 +92,12 @@
                </padding>
             </TableView>
          </children>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </VBox>
    </children>
 </AnchorPane>

@@ -1,5 +1,9 @@
 package model;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
+
 public class DetalleVenta {
     private int cantidadProductos;
     private float subtotal;
@@ -68,5 +72,19 @@ public class DetalleVenta {
                 ", subtotal=" + subtotal +
                 ", productoVendido=" + productoVendido +
                 '\n'+'}' ;
+    }
+
+    public ObjectProperty<Producto> productoVendidoProperty() {
+        return new SimpleObjectProperty<>(productoVendido);
+    }
+
+    // Método para obtener la propiedad de la cantidad de productos
+    public ObjectProperty<Integer> cantidadProductosProperty() {
+        return new SimpleObjectProperty<>(cantidadProductos);
+    }
+
+    // Método para obtener la propiedad del subtotal
+    public ObjectProperty<Float> subtotalProperty() {
+        return new SimpleObjectProperty<>(subtotalPagar());
     }
 }

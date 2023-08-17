@@ -5,4 +5,5 @@ module Almacen {
     exports model;
     exports controller;
     exports main;
+    opens controller;
 }

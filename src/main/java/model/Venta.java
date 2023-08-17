@@ -1,21 +1,24 @@
 package model;
 
+import javafx.collections.ObservableList;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Venta {
-    private final String codigoVenta;
+    private static int ultimoCodigo = 0;
+    private final int codigoVenta;
     private final LocalDate fechaVenta;
     private List<DetalleVenta> detalleVenta = new ArrayList<>();
     private final Cliente cliente;
     private float total;
     private float iva;
 
-    public Venta(String codigoVenta, LocalDate fechaVenta,Cliente cliente, float iva) {
-        this.codigoVenta = codigoVenta;
-        this.fechaVenta = fechaVenta;
+    public Venta( Cliente cliente, float iva) {
+
+        this.codigoVenta = ++ultimoCodigo; // Incrementa el contador y asigna el código
+        this.fechaVenta = LocalDate.now();
         this.cliente = cliente;
         this.iva = iva;
     }
@@ -26,7 +29,7 @@ public class Venta {
     }
 
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigoVenta;
     }
 

@@ -21,26 +21,26 @@ public class TestRegistrarClientes {
     public void testBuscarCodigo(){
         Almacen almacen = new Almacen();
 
-        Venta venta=new Venta("123",null,null,3);
-        Venta venta2=new Venta("321",null,null,3);
-        Venta venta3=new Venta("444",null,null,3);
+        Venta venta=new Venta(null,3);
+        Venta venta2=new Venta(null,3);
+        Venta venta3=new Venta(null,3);
         almacen.venderProducto(venta);
         almacen.venderProducto(venta2);
         almacen.venderProducto(venta3);
-        Assert.assertEquals(venta2,almacen.buscarVentaCodigo("321"));
+        Assert.assertEquals(venta2,almacen.buscarVentaCodigo(321));
     }
     @Test
     public void testEliminarVenta(){
         Almacen almacen = new Almacen();
 
-        Venta venta=new Venta("123",null,null,3);
-        Venta venta2=new Venta("321",null,null,3);
-        Venta venta3=new Venta("444",null,null,3);
+        Venta venta=new Venta(null,3);
+        Venta venta2=new Venta(null,3);
+        Venta venta3=new Venta(null,3);
         almacen.venderProducto(venta);
         almacen.venderProducto(venta2);
         almacen.venderProducto(venta3);
         almacen.getListVentas().forEach(System.out::println);
-        almacen.eliminarVenta("444");
+        almacen.eliminarVenta(444);
         System.out.println("////////////////////////////////////////////////////");
         almacen.getListVentas().forEach(System.out::println);
         Assert.assertEquals(2,almacen.getListVentas().size());
