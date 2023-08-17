@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BienvenidaController">
+    <children>
+      <VBox alignment="CENTER" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #011C2A;">
+         <children>
+            <Label alignment="CENTER" text="¡Bienvenido!" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label text="Cargando sistema por favor espere..." textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="100.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Noto Sans Mono Regular" size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </Label>
+              <ProgressIndicator fx:id="progressIndicator" prefHeight="120.0" prefWidth="90.0" style="-fx-progress-color: #8B067A; -fx-control-inner: transparent;">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ProgressIndicator>
+         </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
+    </children>
+</AnchorPane>

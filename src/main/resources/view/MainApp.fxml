@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: 011C2AFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane layoutX="182.0" layoutY="401.0" prefHeight="29.0" prefWidth="389.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="0.0" prefWidth="68.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="0.0" prefWidth="86.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="0.0" prefWidth="91.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="99.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Cliente" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Empleado" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Producto" GridPane.columnIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Venta" GridPane.columnIndex="3" />
-         </children>
-      </GridPane>
-      <TextArea prefHeight="7.0" prefWidth="753.0" text="                                                                                                    Elige una occion " />
+      <TabPane layoutX="-1.0" layoutY="-2.0" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Productos">
+            <content>
+              <fx:include source="Producto.fxml"> </fx:include>
+            </content>
+          </Tab>
+          <Tab text="Ventas">
+
+            <content>
+              <fx:include source="Ventas.fxml"> </fx:include>
+            </content>
+          </Tab>
+            <Tab text="Clientes">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
