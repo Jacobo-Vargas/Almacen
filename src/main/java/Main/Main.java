@@ -1,4 +1,4 @@
-package org.example;
+package Main;
 
 import model.Almacen;
 import model.AlmacenInstance;
