@@ -18,7 +18,7 @@ public class BienvenidaApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Bienvenida.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/BienvenidaApp.fxml")));
         primaryStage.setTitle("Bienvenida");
         primaryStage.setScene(new Scene(root,600,350));
         primaryStage.setResizable(false);
