@@ -21,7 +21,7 @@
           </Tab>
             <Tab text="Clientes">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="744.0" />
+                <fx:include source="Cliente.fxml"> </fx:include>
               </content>
             </Tab>
         </tabs>
