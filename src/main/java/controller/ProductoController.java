@@ -148,6 +148,8 @@ public class ProductoController {
             tableViewTablaMostrar.setItems(productos);
         }
 
+        tableViewTablaMostrar.refresh();
+
     }
 
     public void buscarProducto() {

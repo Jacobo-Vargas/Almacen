@@ -48,6 +48,8 @@ public class VentasController {
     }
 
     public void llenarComboBox(){
+
+
         for (Producto p: almacen.getListProductos()) {
             productosComboBox.getItems().add(p.getNombreProducto());
         }
@@ -60,7 +62,6 @@ public class VentasController {
     }
 
     public void addDetalle(){
-
     }
 
     public void productoSeleccionado(ActionEvent actionEvent) {
