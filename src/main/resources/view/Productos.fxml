@@ -34,32 +34,32 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="BotonAgregar" mnemonicParsing="false" prefHeight="25.0" prefWidth="208.0" text="Agregar " />
-                        <Button fx:id="BotonBuscar" mnemonicParsing="false" prefHeight="25.0" prefWidth="217.0" text="Buscar " GridPane.columnIndex="1" />
-                        <Button fx:id="BotonEliminar" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Eliminar" GridPane.columnIndex="2" />
+                        <Button fx:id="botonAgregar" mnemonicParsing="false" prefHeight="25.0" prefWidth="208.0" text="Agregar " />
+                        <Button fx:id="botonBuscar" mnemonicParsing="false" prefHeight="25.0" prefWidth="217.0" text="Buscar " GridPane.columnIndex="1" />
+                        <Button fx:id="botonEliminar" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Eliminar" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
-                  <TextField fx:id="TextFieldCodigo" layoutX="48.0" layoutY="99.0" promptText="Codigo" />
-                  <TextField fx:id="TextFieldDescripcion" layoutX="48.0" layoutY="167.0" promptText="Descripcion" />
-                  <TextField fx:id="TextFieldValor" layoutX="48.0" layoutY="202.0" promptText="Valor" />
-                  <TextField fx:id="TextFieldNombre" layoutX="48.0" layoutY="134.0" promptText="Nombre" />
-                  <TextField fx:id="TextFieldExistencia" layoutX="210.0" layoutY="97.0" promptText="Existencia" />
-                  <TextField fx:id="TextFieldFechaEnvasado" layoutX="210.0" layoutY="132.0" promptText=" Fecha envasado" />
-                  <TableView fx:id="TableViewTablaMostrar" layoutX="81.0" layoutY="325.0" prefHeight="150.0" prefWidth="602.0">
+                  <TextField fx:id="textFieldCodigo" layoutX="48.0" layoutY="99.0" promptText="Codigo" />
+                  <TextField fx:id="textFieldDescripcion" layoutX="48.0" layoutY="167.0" promptText="Descripcion" />
+                  <TextField fx:id="textFieldValor" layoutX="48.0" layoutY="202.0" promptText="Valor" />
+                  <TextField fx:id="textFieldNombre" layoutX="48.0" layoutY="134.0" promptText="Nombre" />
+                  <TextField fx:id="textFieldExistencia" layoutX="210.0" layoutY="97.0" promptText="Existencia" />
+                  <TextField fx:id="textFieldFechaEnvasado" layoutX="210.0" layoutY="132.0" promptText=" Fecha envasado" />
+                  <TableView fx:id="tableViewTablaMostrar" layoutX="81.0" layoutY="325.0" prefHeight="150.0" prefWidth="602.0">
                      <columns>
-                        <TableColumn fx:id="TableColumnCodigo" prefWidth="111.0" text="Codigo" />
-                        <TableColumn prefWidth="77.0" fx:id="TableColumnNombre" text="Nombre" />
-                        <TableColumn prefWidth="140.0" fx:id="TableColumnDescripcion" text="Descripcion" />
-                        <TableColumn prefWidth="125.0" fx:id="TableColumnValor" text="Valor" />
-                        <TableColumn minWidth="0.0" fx:id="Existencia" prefWidth="148.0" text="Existencia" />
+                        <TableColumn fx:id="tableColumnCodigo" prefWidth="111.0" text="Codigo" />
+                        <TableColumn prefWidth="77.0" fx:id="tableColumnNombre" text="Nombre" />
+                        <TableColumn prefWidth="140.0" fx:id="tableColumnDescripcion" text="Descripcion" />
+                        <TableColumn prefWidth="125.0" fx:id="tableColumnValor" text="Valor" />
+                        <TableColumn minWidth="0.0" fx:id="existencia" prefWidth="148.0" text="Existencia" />
                      </columns>
                   </TableView>
-                  <ComboBox layoutX="548.0" layoutY="127.0" fx:id="ComboBoxTipoProducto" prefWidth="150.0" promptText="Tipo produco" />
-                  <TextField fx:id="TextFieldPeso" layoutX="210.0" layoutY="167.0" promptText="Peso" />
-                  <TextField fx:id="TextFieldFechaVencimiento" layoutX="376.0" layoutY="99.0" promptText="Fecha vencimiento" />
-                  <TextField fx:id="TextFieldCodigoAprobacion" layoutX="376.0" layoutY="134.0" promptText="Codigo aprobacion " />
-                  <ComboBox fx:id="ComboBoxPais" layoutX="209.0" layoutY="202.0" prefWidth="150.0" promptText="Pais" />
-                  <TextField fx:id="TextFieldTemratura" layoutX="376.0" layoutY="167.0" promptText="Temperatura" />
+                  <ComboBox layoutX="548.0" layoutY="127.0" fx:id="comboBoxTipoProducto" prefWidth="150.0" promptText="Tipo produco" />
+                  <TextField fx:id="textFieldPeso" layoutX="210.0" layoutY="167.0" promptText="Peso" />
+                  <TextField fx:id="textFieldFechaVencimiento" layoutX="376.0" layoutY="99.0" promptText="Fecha vencimiento" />
+                  <TextField fx:id="textFieldCodigoAprobacion" layoutX="376.0" layoutY="134.0" promptText="Codigo aprobacion " />
+                  <ComboBox fx:id="comboBoxPais" layoutX="209.0" layoutY="202.0" prefWidth="150.0" promptText="Pais" />
+                  <TextField fx:id="textFieldTemratura" layoutX="376.0" layoutY="167.0" promptText="Temperatura" />
                </children>
             </Pane>
          </children>
