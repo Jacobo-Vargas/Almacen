@@ -108,6 +108,39 @@ public class Almacen {
         }
         return null;
     }
+    public Producto buscarProductoCodigo(String codigoProducto) {//metodo para la busqueda de una venta mediante su codigo
+        boolean respuesta = false;
+        try {
+            for (int i = 0; i < listProductos.size(); i++) {
+                if (listProductos.get(i).getCodigoProducto().equals(codigoProducto)) {
+                    return listProductos.get(i);
+                }
+            }
+            if (!respuesta) {
+                System.out.println("codigo no encontrada");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    public Producto buscarProductoExistencia(int existencia) {//metodo para la busqueda de una venta mediante su codigo
+        boolean respuesta = false;
+        try {
+            for (int i = 0; i < listProductos.size(); i++) {
+                if (listProductos.get(i).getCantidadExistente()==existencia) {
+                    return listProductos.get(i);
+                }
+            }
+            if (!respuesta) {
+                System.out.println("codigo no encontrada");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
 
     public Producto obtenerProducto(String codigoProducto) {
         for (Producto p : listProductos) {

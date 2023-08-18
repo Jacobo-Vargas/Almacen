@@ -29,14 +29,16 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="botonAgregar" mnemonicParsing="false" prefHeight="25.0" prefWidth="208.0" text="Agregar " />
-                        <Button fx:id="botonBuscar" mnemonicParsing="false" prefHeight="25.0" prefWidth="217.0" text="Buscar " GridPane.columnIndex="1" />
-                        <Button fx:id="botonEliminar" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Eliminar" GridPane.columnIndex="2" />
+                        <Button fx:id="botonAgregar" mnemonicParsing="false" onAction="#botonRegistrar" prefHeight="25.0" prefWidth="208.0" text="Agregar " />
+                        <Button fx:id="botonBuscar" onAction="#buscarProducto" mnemonicParsing="false" prefHeight="25.0" prefWidth="217.0" text="Buscar " GridPane.columnIndex="1" />
+                        <Button fx:id="botonEliminar" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Eliminar" GridPane.columnIndex="3" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" onAction="#restaurarTabla" text="Restablecer" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                   <TextField fx:id="textFieldCodigo" layoutX="48.0" layoutY="99.0" promptText="Codigo" />
@@ -48,13 +50,13 @@
                   <TableView fx:id="tableViewTablaMostrar" layoutX="81.0" layoutY="325.0" prefHeight="150.0" prefWidth="602.0">
                      <columns>
                         <TableColumn fx:id="tableColumnCodigo" prefWidth="111.0" text="Codigo" />
-                        <TableColumn prefWidth="77.0" fx:id="tableColumnNombre" text="Nombre" />
-                        <TableColumn prefWidth="140.0" fx:id="tableColumnDescripcion" text="Descripcion" />
-                        <TableColumn prefWidth="125.0" fx:id="tableColumnValor" text="Valor" />
-                        <TableColumn minWidth="0.0" fx:id="existencia" prefWidth="148.0" text="Existencia" />
+                        <TableColumn fx:id="tableColumnNombre" prefWidth="77.0" text="Nombre" />
+                        <TableColumn fx:id="tableColumnDescripcion" prefWidth="140.0" text="Descripcion" />
+                        <TableColumn fx:id="tableColumnValor" prefWidth="125.0" text="Valor" />
+                        <TableColumn fx:id="existencia" minWidth="0.0" prefWidth="148.0" text="Existencia" />
                      </columns>
                   </TableView>
-                  <ComboBox layoutX="548.0" layoutY="127.0" fx:id="comboBoxTipoProducto" prefWidth="150.0" promptText="Tipo produco" />
+                  <ComboBox fx:id="comboBoxTipoProducto" layoutX="548.0" layoutY="127.0" onAction="#comboxEnvasado" prefWidth="150.0" promptText="Tipo produco" />
                   <TextField fx:id="textFieldPeso" layoutX="210.0" layoutY="167.0" promptText="Peso" />
                   <TextField fx:id="textFieldFechaVencimiento" layoutX="376.0" layoutY="99.0" promptText="Fecha vencimiento" />
                   <TextField fx:id="textFieldCodigoAprobacion" layoutX="376.0" layoutY="134.0" promptText="Codigo aprobacion " />

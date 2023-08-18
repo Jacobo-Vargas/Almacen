@@ -7,7 +7,7 @@ public enum AlmacenInstance {
 
     AlmacenInstance(){
         almacen = new Almacen();
-        
+
     }
 
     public Almacen getAlmacen() {
