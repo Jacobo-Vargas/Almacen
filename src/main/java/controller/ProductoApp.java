@@ -1,4 +1,4 @@
-package main;
+package controller;
 
 
 import javafx.application.Application;
@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ProductoApp extends Application {
 
@@ -17,10 +18,11 @@ public class ProductoApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MainApp.fxml"));
 
 
-        Scene scene = new Scene(root, 400, 300);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Producto.fxml")));
+
+        Scene scene = new Scene(root, 750, 460);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Ventana producto");
