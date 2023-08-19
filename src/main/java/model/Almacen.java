@@ -63,13 +63,33 @@ public class Almacen {
         try {
             for (int i = 0; i < listProductos.size(); i++) {
                 if (listProductos.get(i).getCodigoProducto().equals(codigo)) {
-                    listProductos.remove(listVentas.get(i));
+                    listProductos.remove(listProductos.get(i));
                     respuesta = true;
                 }
             }
             if (!respuesta) {
-                System.out.println("producto no encontrado");
+                System.out.println("Codigo no encontrado");
             }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void eliminarProductoNombre(String codigo) {//metodo para eliminar un producto por medio del codogo,
+        // elimina de la lista producto
+        boolean respuesta = false;
+        try {
+            for (int i = 0; i < listProductos.size(); i++) {
+                if (listProductos.get(i).getNombreProducto().equals(codigo)) {
+                    listProductos.remove(listProductos.get(i));
+                    respuesta = true;
+                }
+            }
+            if (!respuesta) {
+                System.out.println("Nombre no encontrado");
+            }
+
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

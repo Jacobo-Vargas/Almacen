@@ -29,13 +29,10 @@ public class ProductoController {
     @FXML
     public TextField textFieldExistencia;
     @FXML
-    public TextField textFieldFechaEnvasado;
-    @FXML
     public TableView tableViewTablaMostrar;
     @FXML
     public TextField textFieldPeso;
-    @FXML
-    public TextField textFieldFechaVencimiento;
+
     @FXML
     public TextField textFieldCodigoAprobacion;
     @FXML
@@ -56,6 +53,12 @@ public class ProductoController {
     @FXML
     public TableColumn existencia;
     @FXML
+    public DatePicker DatePickerFechaVencimiento;
+    @FXML
+    public DatePicker DatePickerFechaEnvasado;
+    @FXML
+    public TableColumn tableColumnPeso;
+    @FXML
     ObservableList<Producto> productos;
 
     public void initialize() {
@@ -67,30 +70,32 @@ public class ProductoController {
         tableColumnDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcionProducto"));
         ;
         tableColumnValor.setCellValueFactory(new PropertyValueFactory<>("valorUnitario"));
+        //tableColumnPeso.setCellValueFactory(new PropertyValueFactory<>("pesoProducto"));
         ;
         existencia.setCellValueFactory(new PropertyValueFactory<>("cantidadExistente"));
-        textFieldFechaVencimiento.setVisible(false);
+
+        DatePickerFechaVencimiento.setVisible(false);
         textFieldPeso.setVisible(false);
         comboBoxPais.setVisible(false);
-        textFieldFechaVencimiento.setVisible(false);
+        DatePickerFechaVencimiento.setVisible(false);
         textFieldCodigoAprobacion.setVisible(false);
         textFieldTemratura.setVisible(false);
-        textFieldFechaEnvasado.setVisible(false);
+        DatePickerFechaEnvasado.setVisible(false);
         comboBoxTipoProducto.getItems().addAll(EnumProducto.values());
         comboBoxPais.getItems().addAll(PaisOrigen.values());
     }
 
     public void comboxEnvasado() {
         if (comboBoxTipoProducto.getValue() == EnumProducto.Envasado) {
-            textFieldFechaEnvasado.setVisible(true);
+            DatePickerFechaEnvasado.setVisible(true);
             textFieldPeso.setVisible(true);
             comboBoxPais.setVisible(true);
-            textFieldFechaVencimiento.setVisible(false);
+            DatePickerFechaVencimiento.setVisible(false);
             textFieldCodigoAprobacion.setVisible(false);
             textFieldTemratura.setVisible(false);
         } else if (comboBoxTipoProducto.getValue() == EnumProducto.Perecedero) {
-            textFieldFechaVencimiento.setVisible(true);
-            textFieldFechaEnvasado.setVisible(false);
+            DatePickerFechaVencimiento.setVisible(true);
+            DatePickerFechaEnvasado.setVisible(false);
             textFieldPeso.setVisible(false);
             comboBoxPais.setVisible(false);
             textFieldCodigoAprobacion.setVisible(false);
@@ -99,8 +104,8 @@ public class ProductoController {
         } else if (comboBoxTipoProducto.getValue() == EnumProducto.Refrigerado) {
             textFieldCodigoAprobacion.setVisible(true);
             textFieldTemratura.setVisible(true);
-            textFieldFechaVencimiento.setVisible(false);
-            textFieldFechaEnvasado.setVisible(false);
+            DatePickerFechaVencimiento.setVisible(false);
+            DatePickerFechaEnvasado.setVisible(false);
             textFieldPeso.setVisible(false);
             comboBoxPais.setVisible(false);
         }
@@ -113,10 +118,10 @@ public class ProductoController {
             String descripcion = textFieldDescripcion.getText();
             float valor = Float.parseFloat(textFieldValor.getText());
             int cantidad = Integer.parseInt(textFieldExistencia.getText());
-            LocalDate fecha = LocalDate.now();
             float peso = Float.parseFloat(textFieldPeso.getText());
             PaisOrigen pais = (PaisOrigen) comboBoxPais.getValue();
-            ProductoEnvasado productoEnvasado = new ProductoEnvasado(codigo, nombre, descripcion, valor, cantidad, fecha, peso, pais);
+            LocalDate fechaEnvasado=DatePickerFechaEnvasado.getValue();
+            ProductoEnvasado productoEnvasado = new ProductoEnvasado(codigo, nombre, descripcion, valor, cantidad,fechaEnvasado , peso, pais);
             AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(productoEnvasado);
             productos = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListProductos());
             tableViewTablaMostrar.setItems(productos);
@@ -127,7 +132,7 @@ public class ProductoController {
             String descripcion = textFieldDescripcion.getText();
             float valor = Float.parseFloat(textFieldValor.getText());
             int cantidad = Integer.parseInt(textFieldExistencia.getText());
-            LocalDate fechaVencimiento = LocalDate.now();
+            LocalDate fechaVencimiento = DatePickerFechaVencimiento.getValue();
             ProductoPerecedero productoPerecedero = new ProductoPerecedero(codigo, nombre, descripcion, valor, cantidad,
                     fechaVencimiento);
             AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(productoPerecedero);
@@ -153,10 +158,10 @@ public class ProductoController {
     }
 
     public void buscarProducto() {
-        textFieldFechaEnvasado.setVisible(false);
+        DatePickerFechaEnvasado.setVisible(false);
         textFieldPeso.setVisible(false);
         comboBoxPais.setVisible(false);
-        textFieldFechaVencimiento.setVisible(false);
+        DatePickerFechaVencimiento.setVisible(false);
         textFieldCodigoAprobacion.setVisible(false);
         textFieldPeso.setVisible(false);
         textFieldNombre.setVisible(false);
@@ -178,9 +183,35 @@ public class ProductoController {
     public void restaurarTabla() {
         productos = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListProductos());
         tableViewTablaMostrar.setItems(productos);
+        textFieldCodigo.setVisible(true);
         textFieldNombre.setVisible(true);
         textFieldDescripcion.setVisible(true);
         textFieldValor.setVisible(true);
+        textFieldExistencia.setVisible(true);
+
+    }
+    public void botonEliminar(){
+        textFieldDescripcion.setVisible(false);
+        textFieldValor.setVisible(false);
+        textFieldExistencia.setVisible(false);
+        DatePickerFechaEnvasado.setVisible(false);
+        textFieldPeso.setVisible(false);
+        comboBoxPais.setVisible(false);
+        if(textFieldCodigo.getText().isEmpty()==false){
+            System.out.println(AlmacenInstance.INSTANCE.getAlmacen().getListProductos().size());
+            AlmacenInstance.INSTANCE.getAlmacen().eliminarProductoCodigo(textFieldCodigo.getText());
+            productos = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListProductos());
+            tableViewTablaMostrar.setItems(productos);
+
+
+
+        }else if(textFieldNombre.getText().isEmpty()==false){
+            AlmacenInstance.INSTANCE.getAlmacen().eliminarProductoNombre(textFieldNombre.getText());
+            tableViewTablaMostrar.refresh();
+            productos = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListProductos());
+            tableViewTablaMostrar.setItems(productos);
+        }
+        tableViewTablaMostrar.refresh();
 
     }
 }
