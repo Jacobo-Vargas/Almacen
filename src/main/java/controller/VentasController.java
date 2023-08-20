@@ -4,13 +4,13 @@ package controller;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import model.Producto;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -113,7 +113,7 @@ public class VentasController {
 
 
     @FXML
-    void addVenta() {
+    void addVenta() throws IOException {
         for (Cliente c: AlmacenInstance.INSTANCE.getAlmacen().getListClientes()) {
             if(c.getNumeroIdentificacion().equals(txtCedulaCliente.getText())){
                 Venta venta = new Venta(c,19);
@@ -126,8 +126,10 @@ public class VentasController {
                 System.out.println(AlmacenInstance.INSTANCE.getAlmacen().getListVentas().size());
                 System.out.println(venta.calcularTotal());
                 observableVenta.add(venta);
+                GenerarReporte.generarPDFVenta(venta);
             }
         }
+
         detalles.clear();
         observableDetalleVenta.clear();
 
@@ -142,17 +144,5 @@ public class VentasController {
             }
         }
         return nombreProducto;
-    }
-
-    public void productoSeleccionado(ActionEvent actionEvent) {
-
-    }
-
-    public void clienteSeleccionado(ActionEvent actionEvent) {
-
-    }
-
-    public ArrayList<DetalleVenta> getListaTemporal() {
-        return detalles;
     }
 }

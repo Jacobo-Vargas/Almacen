@@ -49,6 +49,16 @@ public class DetalleVenta {
         return valor;
     }
 
+    public String obtenerNombreProducto(){
+        String nombre  = "";
+        for (Producto p: AlmacenInstance.INSTANCE.getAlmacen().getListProductos()) {
+            if(p.getCodigoProducto().equals(productoVendido)){
+                nombre = p.getNombreProducto();
+            }
+        }
+        return nombre;
+    }
+
     public int getCantidadProductos() {
         return cantidadProductos;
     }
