@@ -120,8 +120,8 @@ public class ProductoController {
             int cantidad = Integer.parseInt(textFieldExistencia.getText());
             float peso = Float.parseFloat(textFieldPeso.getText());
             PaisOrigen pais = (PaisOrigen) comboBoxPais.getValue();
-            LocalDate fechaEnvasado=DatePickerFechaEnvasado.getValue();
-            ProductoEnvasado productoEnvasado = new ProductoEnvasado(codigo, nombre, descripcion, valor, cantidad,fechaEnvasado , peso, pais);
+            LocalDate fechaEnvasado = DatePickerFechaEnvasado.getValue();
+            ProductoEnvasado productoEnvasado = new ProductoEnvasado(codigo, nombre, descripcion, valor, cantidad, fechaEnvasado, peso, pais);
             AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(productoEnvasado);
             productos = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListProductos());
             tableViewTablaMostrar.setItems(productos);
@@ -190,22 +190,22 @@ public class ProductoController {
         textFieldExistencia.setVisible(true);
 
     }
-    public void botonEliminar(){
+
+    public void botonEliminar() {
         textFieldDescripcion.setVisible(false);
         textFieldValor.setVisible(false);
         textFieldExistencia.setVisible(false);
         DatePickerFechaEnvasado.setVisible(false);
         textFieldPeso.setVisible(false);
         comboBoxPais.setVisible(false);
-        if(textFieldCodigo.getText().isEmpty()==false){
+        if (textFieldCodigo.getText().isEmpty() == false) {
             System.out.println(AlmacenInstance.INSTANCE.getAlmacen().getListProductos().size());
             AlmacenInstance.INSTANCE.getAlmacen().eliminarProductoCodigo(textFieldCodigo.getText());
             productos = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListProductos());
             tableViewTablaMostrar.setItems(productos);
 
 
-
-        }else if(textFieldNombre.getText().isEmpty()==false){
+        } else if (textFieldNombre.getText().isEmpty() == false) {
             AlmacenInstance.INSTANCE.getAlmacen().eliminarProductoNombre(textFieldNombre.getText());
             tableViewTablaMostrar.refresh();
             productos = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListProductos());

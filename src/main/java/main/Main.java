@@ -29,8 +29,8 @@ public class Main {
 
 
         // se añaden productos a canasta
-        DetalleVenta detalle = new DetalleVenta(2,almacen.obtenerProducto("01"));
-        DetalleVenta detalle1 = new DetalleVenta(2, almacen.obtenerProducto("03"));
+        DetalleVenta detalle = new DetalleVenta(2,"01");
+        DetalleVenta detalle1 = new DetalleVenta(2, "03");
 
         //se llevan a caja y se procesa venta
         Venta venta = new Venta(almacen.buscarClientePorCedula("1094958613"), 19);

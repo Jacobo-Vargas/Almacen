@@ -29,7 +29,7 @@
          <children>
             <ImageView fitHeight="203.0" fitWidth="198.0" layoutX="13.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../Downloads/perfil.png" />
+                  <Image url="@../imagenes/perfil.png" />
                </image>
             </ImageView>
          </children>

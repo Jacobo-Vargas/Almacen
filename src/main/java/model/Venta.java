@@ -21,11 +21,13 @@ public class Venta {
         this.fechaVenta = LocalDate.now();
         this.cliente = cliente;
         this.iva = iva;
+        this.total = calcularTotal();
     }
 
     public float calcularTotal() {
-        total = (float) detalleVenta.stream().mapToDouble(DetalleVenta::getSubtotal).sum();
-        return ((total*(iva/100))+total);
+        float valorSinIva = (float) detalleVenta.stream().mapToDouble(DetalleVenta::getSubtotal).sum();
+        total = (valorSinIva+(valorSinIva*(iva/100)));
+        return (valorSinIva+(valorSinIva*(iva/100)));
     }
 
 

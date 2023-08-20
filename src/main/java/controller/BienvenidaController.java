@@ -17,7 +17,7 @@ public class BienvenidaController {
         progressIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
 
         // se establece tiempo para cerrar la actual y cargar la nueva ventana
-        Duration waitDuration = Duration.seconds(5);
+        Duration waitDuration = Duration.seconds(2);
 
         /*
           se establece la linea de tiempo pra que empieze a correr y una lambda para

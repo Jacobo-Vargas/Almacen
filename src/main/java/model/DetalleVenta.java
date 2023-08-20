@@ -1,17 +1,15 @@
 package model;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
 
 public class DetalleVenta {
     private int cantidadProductos;
     private float subtotal;
-    private Producto productoVendido;
+    private String productoVendido;
 
-    public DetalleVenta(int cantidadProductos,Producto productoVendido) {
+    public DetalleVenta(int cantidadProductos,String productoVendido) {
         this.cantidadProductos = cantidadProductos;
         this.productoVendido = productoVendido;
+        this.subtotal = subtotalPagar();
     }
 
     public boolean consultarDisponibilidad() {
@@ -19,14 +17,14 @@ public class DetalleVenta {
         return AlmacenInstance.INSTANCE.getAlmacen()
                 .getListProductos()
                 .stream()
-                .filter(producto -> producto.getCodigoProducto().equals(productoVendido.getCodigoProducto()))
+                .filter(producto -> producto.getCodigoProducto().equals(productoVendido))
                 .anyMatch(producto -> producto.getCantidadExistente() >= cantidadProductos);
 
     }
 
     public void descontarProductos(){
         for (Producto p: AlmacenInstance.INSTANCE.getAlmacen().getListProductos()) {
-            if(p.getCodigoProducto().equals(productoVendido.getCodigoProducto())){
+            if(p.getCodigoProducto().equals(productoVendido)){
                 p.setCantidadExistente(p.getCantidadExistente()-cantidadProductos);
             }
         }
@@ -34,11 +32,21 @@ public class DetalleVenta {
     public float subtotalPagar(){
         if(consultarDisponibilidad()){
             descontarProductos();
-            subtotal = productoVendido.getValorUnitario()*cantidadProductos;
+            subtotal = obtenerPrecioProducto()*cantidadProductos;
         }else{
             subtotal = 0;
         }
         return subtotal;
+    }
+
+    public float obtenerPrecioProducto(){
+        float valor = 0;
+        for (Producto p: AlmacenInstance.INSTANCE.getAlmacen().getListProductos()) {
+            if(p.getCodigoProducto().equals(productoVendido)){
+                valor = p.getValorUnitario();
+            }
+        }
+        return valor;
     }
 
     public int getCantidadProductos() {
@@ -50,18 +58,18 @@ public class DetalleVenta {
     }
 
     public float getSubtotal() {
-        return subtotalPagar();
+        return subtotal;
     }
 
     public void setSubtotal(float subtotal) {
         this.subtotal = subtotal;
     }
 
-    public Producto getProductoVendido() {
+    public String getProductoVendido() {
         return productoVendido;
     }
 
-    public void setProductoVendido(Producto productoVendido) {
+    public void setProductoVendido(String productoVendido) {
         this.productoVendido = productoVendido;
     }
 
@@ -72,19 +80,5 @@ public class DetalleVenta {
                 ", subtotal=" + subtotal +
                 ", productoVendido=" + productoVendido +
                 '\n'+'}' ;
-    }
-
-    public ObjectProperty<Producto> productoVendidoProperty() {
-        return new SimpleObjectProperty<>(productoVendido);
-    }
-
-    // Método para obtener la propiedad de la cantidad de productos
-    public ObjectProperty<Integer> cantidadProductosProperty() {
-        return new SimpleObjectProperty<>(cantidadProductos);
-    }
-
-    // Método para obtener la propiedad del subtotal
-    public ObjectProperty<Float> subtotalProperty() {
-        return new SimpleObjectProperty<>(subtotalPagar());
     }
 }
