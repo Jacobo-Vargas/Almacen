@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 
 import java.time.LocalDate;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class ProductoController {
@@ -59,7 +60,10 @@ public class ProductoController {
     @FXML
     public TableColumn tableColumnPeso;
     @FXML
+    public Button botonActulizar;
+    @FXML
     ObservableList<Producto> productos;
+    private Producto productoSelecionado;
 
     public void initialize() {
         productos = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListProductos());
@@ -83,6 +87,23 @@ public class ProductoController {
         DatePickerFechaEnvasado.setVisible(false);
         comboBoxTipoProducto.getItems().addAll(EnumProducto.values());
         comboBoxPais.getItems().addAll(PaisOrigen.values());
+        tableViewTablaMostrar.setOnMouseClicked(even->{
+            if(even.getClickCount()==1){
+                Producto selecion= (Producto) tableViewTablaMostrar.getSelectionModel().getSelectedItem();
+                productoSelecionado=selecion;
+                textFieldCodigo.setText(selecion.getCodigoProducto());
+                textFieldNombre.setText(selecion.getNombreProducto());
+                textFieldDescripcion.setText(selecion.getDescripcionProducto());
+                textFieldValor.setText(String.valueOf(selecion.getValorUnitario()));
+                textFieldExistencia.setText(String.valueOf(selecion.getCantidadExistente()));
+
+                if(selecion !=null){
+                    System.out.println("selecion "+selecion.getNombreProducto());
+
+                }
+            }
+        });
+
     }
 
     public void comboxEnvasado() {
@@ -212,6 +233,36 @@ public class ProductoController {
             tableViewTablaMostrar.setItems(productos);
         }
         tableViewTablaMostrar.refresh();
+
+    }
+    public void actualizarProducto(){
+        textFieldCodigo.setVisible(true);
+        textFieldNombre.setVisible(true);
+        textFieldDescripcion.setVisible(true);
+        textFieldValor.setVisible(true);
+        textFieldExistencia.setVisible(true);
+
+        String nombre=textFieldNombre.getText();
+        String descripcion=textFieldDescripcion.getText();
+        float valor= Float.parseFloat(textFieldValor.getText());
+        String existencia=textFieldExistencia.getText();
+
+
+        textFieldCodigoAprobacion.setVisible(false);
+        textFieldTemratura.setVisible(false);
+        comboBoxPais.setVisible(false);
+        DatePickerFechaVencimiento.setVisible(false);
+        DatePickerFechaEnvasado.setVisible(false);
+        if((nombre.equals(productoSelecionado.getNombreProducto())==false)){
+            for(int i=0;i<AlmacenInstance.INSTANCE.getAlmacen().getListProductos().size();i++){
+                if(productoSelecionado.getCodigoProducto().equals(AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).getCodigoProducto())){
+                    AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).setNombreProducto(nombre);
+                    productos = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListProductos());
+                    tableViewTablaMostrar.setItems(productos);
+                }
+            }
+
+        }
 
     }
 }

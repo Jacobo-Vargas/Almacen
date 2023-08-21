@@ -218,6 +218,32 @@ public class Almacen {
     public void setListClientes(ArrayList<Cliente> listClientes) {
         this.listClientes = listClientes;
     }
+    public void actualizarProductoNombre(Producto producto){
+        for(int i=0 ; i<listProductos.size();i++){
+            if(producto.getNombreProducto().equals(AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).getNombreProducto())){
+                AlmacenInstance.INSTANCE.getAlmacen().listProductos.remove(AlmacenInstance.INSTANCE.getAlmacen().listProductos.get(i));
+                AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(producto);
+            }
+        }
+
+    }
+    public void actualizarProductoNombreDescripcion(Producto producto){
+        for(int i=0 ; i<listProductos.size();i++){
+            if(producto.getDescripcionProducto().equals(AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).getDescripcionProducto())){
+                AlmacenInstance.INSTANCE.getAlmacen().listProductos.remove(AlmacenInstance.INSTANCE.getAlmacen().listProductos.get(i));
+                AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(producto);
+            }
+        }
+
+    }
+  //  public void actualizarProductoValor(Producto producto){
+    //    for(int i=0 ; i<listProductos.size();i++){
+       //     if(producto.getValorUnitario()==AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).getValorUnitario()){
+         //       AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).setNombreProducto();
+           // }
+        //}
+
+    //}//
 
     @Override
     public String toString() {

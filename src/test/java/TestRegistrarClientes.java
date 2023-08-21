@@ -56,6 +56,7 @@ public class TestRegistrarClientes {
                 "123","33","d"));
         almacen.registrarCliente(new Cliente("Juan pablo","buitrago","Piragua",
                 "444","33","d"));
+
         System.out.println(almacen.getListClientes().size());
         almacen.getListClientes().forEach(System.out::println);
         System.out.println("/////////////////////////////////////////////////////");
@@ -65,6 +66,23 @@ public class TestRegistrarClientes {
         Assert.assertEquals(2,almacen.getListClientes().size());
 
     }
+    @Test
+    public void testEliminarCliente2(){
+        Almacen almacen = new Almacen();
+
+        almacen.registrarCliente(new Cliente("Juan pablo","buitrago","Piragua",
+                "1090","33","d"));
+        almacen.registrarCliente(new Cliente("Juan pablo","buitrago","Piragua",
+                "123","33","d"));
+        almacen.registrarCliente(new Cliente("Juan pablo","buitrago","Piragua",
+                "444","33","d"));
+        almacen.getListClientes().forEach(perso->System.out.println(perso));
+        System.out.println();
+        almacen.getListClientes().get(0).setTelefono("32366");
+        almacen.getListClientes().forEach(perso->System.out.println(perso));
+
+    }
+
 
 
 }

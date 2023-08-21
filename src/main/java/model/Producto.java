@@ -1,8 +1,10 @@
 package model;
 
 public class Producto {
-    private final String codigoProducto;
-    private final String nombreProducto;
+
+
+    private  String codigoProducto;
+    private  String nombreProducto;
     private String descripcionProducto;
     private float valorUnitario;
     private int cantidadExistente;
@@ -46,6 +48,13 @@ public class Producto {
     public void setCantidadExistente(int cantidadExistente) {
         this.cantidadExistente = cantidadExistente;
     }
+    public void setCodigoProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
 
     @Override
     public String toString() {
@@ -57,4 +66,5 @@ public class Producto {
                 ", cantidadExistente=" + cantidadExistente +
                 '}';
     }
+
 }

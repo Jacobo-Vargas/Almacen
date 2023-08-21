@@ -31,6 +31,7 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -40,6 +41,7 @@
                         <Button fx:id="botonBuscar" mnemonicParsing="false" onAction="#buscarProducto" prefHeight="25.0" prefWidth="217.0" text="Buscar " GridPane.columnIndex="1" />
                         <Button fx:id="botonEliminar" mnemonicParsing="false" onAction="#botonEliminar" prefHeight="25.0" prefWidth="204.0" text="Eliminar" GridPane.columnIndex="3" />
                         <Button mnemonicParsing="false" onAction="#restaurarTabla" prefHeight="25.0" prefWidth="151.0" text="Restablecer" GridPane.columnIndex="2" />
+                        <Button fx:id="botonActulizar" onAction="#actualizarProducto" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Actulizar" GridPane.columnIndex="4" />
                      </children>
                   </GridPane>
                   <TextField fx:id="textFieldCodigo" layoutX="48.0" layoutY="99.0" promptText="Codigo" />
