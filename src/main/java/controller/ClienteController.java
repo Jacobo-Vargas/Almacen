@@ -56,7 +56,9 @@ public class ClienteController {
 
     @FXML
     public TextField textFieldNit;
+    @FXML
     public Button btnRegistrar;
+    @FXML
     public Button btnEliminar;
 
     @FXML
@@ -83,7 +85,7 @@ public class ClienteController {
 
     }
 
-    public void botonRegistrar() {
+    /**public void botonRegistrar() {
         String nombre = textFieldNombre.getText();
         String primerApellido = textFieldAPrimerApellido.getText();
         String segundoApellido = textFieldSegundoApellido.getText();
@@ -149,7 +151,7 @@ public class ClienteController {
     }
 
     public void botonActualizar() {
-    }
+    }**/
 
 }
 
