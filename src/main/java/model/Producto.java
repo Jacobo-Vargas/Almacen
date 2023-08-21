@@ -1,5 +1,7 @@
 package model;
 
+import controller.Utils;
+
 public class Producto {
 
 
@@ -10,9 +12,21 @@ public class Producto {
     private int cantidadExistente;
 
     protected Producto(String codigoProducto, String nombreProducto, String descripcionProducto, float valorUnitario, int cantidadExistente) {
-        this.codigoProducto = codigoProducto;
-        this.nombreProducto = nombreProducto;
-        this.descripcionProducto = descripcionProducto;
+        if(codigoProducto.isEmpty()){
+            Utils.alertaProductoError();
+        }else{
+            this.codigoProducto = codigoProducto;
+        }
+        if(nombreProducto.isEmpty()){
+            Utils.alertaProductoError();
+        }else{
+            this.nombreProducto = nombreProducto;
+        }
+        if(descripcionProducto.isEmpty()){
+            Utils.alertaProductoError();
+        }else{
+            this.descripcionProducto = descripcionProducto;
+        }
         this.valorUnitario = valorUnitario;
         this.cantidadExistente = cantidadExistente;
     }

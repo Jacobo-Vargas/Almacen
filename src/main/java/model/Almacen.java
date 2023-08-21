@@ -1,5 +1,7 @@
 package model;
 
+import controller.Utils;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +17,11 @@ public class Almacen {
     public void registrarProducto(Producto producto) {
         try {
             if (getListProductos().stream().anyMatch(producto1 -> producto1.getCodigoProducto().equals(producto.getCodigoProducto()))) {
-                System.out.println("El codigo ya existe");
+                Utils.alertaProductoExistente();
             } else {
                 System.out.println("Se agrego");
                 listProductos.add(producto);
+                Utils.alertaProductoAgregadoExito();
             }
 
         } catch (Exception e) {
@@ -136,11 +139,11 @@ public class Almacen {
         }
         return null;
     }
-    public Producto buscarProductoExistencia(int existencia) {//metodo para la busqueda de una venta mediante su codigo
+    public Producto buscarProductoNombre(String nombre) {//metodo para la busqueda de una venta mediante su codigo
         boolean respuesta = false;
         try {
             for (int i = 0; i < listProductos.size(); i++) {
-                if (listProductos.get(i).getCantidadExistente() == existencia) {
+                if (listProductos.get(i).getNombreProducto().equals(nombre) ) {
                     return listProductos.get(i);
                 }
             }
@@ -226,32 +229,20 @@ public class Almacen {
     public void setListClientes(ArrayList<Cliente> listClientes) {
         this.listClientes = listClientes;
     }
-    public void actualizarProductoNombre(Producto producto){
-        for(int i=0 ; i<listProductos.size();i++){
-            if(producto.getNombreProducto().equals(AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).getNombreProducto())){
-                AlmacenInstance.INSTANCE.getAlmacen().listProductos.remove(AlmacenInstance.INSTANCE.getAlmacen().listProductos.get(i));
-                AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(producto);
-            }
-        }
 
+
+  public void modificarProducotNombre(String nombre,int i){
+        getListProductos().get(i).setNombreProducto(nombre);
+  }
+    public void modificarProducotDescrpcio(String descripcion,int i){
+        getListProductos().get(i).setDescripcionProducto(descripcion);
     }
-    public void actualizarProductoNombreDescripcion(Producto producto){
-        for(int i=0 ; i<listProductos.size();i++){
-            if(producto.getDescripcionProducto().equals(AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).getDescripcionProducto())){
-                AlmacenInstance.INSTANCE.getAlmacen().listProductos.remove(AlmacenInstance.INSTANCE.getAlmacen().listProductos.get(i));
-                AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(producto);
-            }
-        }
-
+    public void modificarProducotPrecio(float precio,int i){
+        getListProductos().get(i).setValorUnitario(precio);
     }
-  //  public void actualizarProductoValor(Producto producto){
-    //    for(int i=0 ; i<listProductos.size();i++){
-       //     if(producto.getValorUnitario()==AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).getValorUnitario()){
-         //       AlmacenInstance.INSTANCE.getAlmacen().getListProductos().get(i).setNombreProducto();
-           // }
-        //}
-
-    //}//
+    public void modificarProducotExistencia(int cantidad,int i){
+        getListProductos().get(i).setCantidadExistente(cantidad);
+    }
 
     @Override
     public String toString() {

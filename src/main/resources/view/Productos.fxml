@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -10,65 +11,78 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="469.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductoController">
    <children>
-      <AnchorPane layoutX="8.0" layoutY="10.0" prefHeight="469.0" prefWidth="750.0">
+      <VBox alignment="CENTER" prefHeight="469.0" prefWidth="750.0" spacing="10.0">
          <children>
-            <Pane layoutX="-7.0" layoutY="-19.0" prefHeight="489.0" prefWidth="764.0">
+            <Label prefHeight="35.0" prefWidth="109.0" text="Producto" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="173.0" prefWidth="750.0" spacing="180.0">
                <children>
-                  <Label layoutX="309.0" layoutY="14.0" prefHeight="53.0" prefWidth="100.0" text="Producto">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <GridPane layoutX="80.0" layoutY="261.0" prefHeight="30.0" prefWidth="605.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
+                  <GridPane prefHeight="138.0" prefWidth="279.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                    </rowConstraints>
                      <children>
-                        <Button fx:id="botonAgregar" mnemonicParsing="false" onAction="#botonRegistrar" prefHeight="25.0" prefWidth="208.0" text="Agregar " />
-                        <Button fx:id="botonBuscar" mnemonicParsing="false" onAction="#buscarProducto" prefHeight="25.0" prefWidth="217.0" text="Buscar " GridPane.columnIndex="1" />
-                        <Button fx:id="botonEliminar" mnemonicParsing="false" onAction="#botonEliminar" prefHeight="25.0" prefWidth="204.0" text="Eliminar" GridPane.columnIndex="3" />
-                        <Button mnemonicParsing="false" onAction="#restaurarTabla" prefHeight="25.0" prefWidth="151.0" text="Restablecer" GridPane.columnIndex="2" />
-                        <Button fx:id="botonActulizar" onAction="#actualizarProducto" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Actulizar" GridPane.columnIndex="4" />
+                        <TextField fx:id="textFieldCodigo" promptText="Codigo" />
+                        <TextField fx:id="textFieldExistencia" promptText="Existencia" GridPane.columnIndex="1" />
+                        <TextField fx:id="textFieldNombre" promptText="Nombre" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="DatePickerFechaEnvasado" prefHeight="25.0" prefWidth="149.0" promptText="Fecha envasado" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textFieldDescripcion" promptText="Descripcion" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="DatePickerFechaVencimiento" prefHeight="25.0" prefWidth="149.0" promptText="Fecha vencimiento" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textFieldCodigoAprobacion" promptText="Codigo aprobacion " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textFieldTemratura" promptText="Temperatura" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textFieldPeso" promptText="Peso" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textFieldValor" promptText="Valor" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="comboBoxPais" prefWidth="150.0" promptText="Pais" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <TextField fx:id="textFieldCodigo" layoutX="48.0" layoutY="99.0" promptText="Codigo" />
-                  <TextField fx:id="textFieldDescripcion" layoutX="48.0" layoutY="167.0" promptText="Descripcion" />
-                  <TextField fx:id="textFieldValor" layoutX="48.0" layoutY="202.0" promptText="Valor" />
-                  <TextField fx:id="textFieldNombre" layoutX="48.0" layoutY="134.0" promptText="Nombre" />
-                  <TextField fx:id="textFieldExistencia" layoutX="210.0" layoutY="97.0" promptText="Existencia" />
-                  <TableView fx:id="tableViewTablaMostrar" layoutX="42.0" layoutY="325.0" prefHeight="150.0" prefWidth="682.0">
-                     <columns>
-                        <TableColumn fx:id="tableColumnCodigo" prefWidth="111.0" text="Codigo" />
-                        <TableColumn fx:id="tableColumnNombre" prefWidth="77.0" text="Nombre" />
-                        <TableColumn fx:id="tableColumnDescripcion" prefWidth="140.0" text="Descripcion" />
-                        <TableColumn fx:id="tableColumnValor" prefWidth="125.0" text="Valor" />
-                        <TableColumn fx:id="existencia" minWidth="0.0" prefWidth="148.0" text="Existencia" />
-                        <TableColumn fx:id="tableColumnPeso" prefWidth="75.0" text="Peso" />
-                     </columns>
-                  </TableView>
-                  <ComboBox fx:id="comboBoxTipoProducto" layoutX="548.0" layoutY="127.0" onAction="#comboxEnvasado" prefWidth="150.0" promptText="Tipo produco" />
-                  <TextField fx:id="textFieldPeso" layoutX="210.0" layoutY="167.0" promptText="Peso" />
-                  <TextField fx:id="textFieldCodigoAprobacion" layoutX="210.0" layoutY="134.0" promptText="Codigo aprobacion " />
-                  <ComboBox fx:id="comboBoxPais" layoutX="209.0" layoutY="202.0" prefWidth="150.0" promptText="Pais" />
-                  <DatePicker fx:id="DatePickerFechaVencimiento" layoutX="209.0" layoutY="97.0" prefHeight="25.0" prefWidth="149.0" promptText="Fecha vencimiento" />
-                  <TextField fx:id="textFieldTemratura" layoutX="210.0" layoutY="167.0" promptText="Temperatura" />
-                  <DatePicker fx:id="DatePickerFechaEnvasado" layoutX="210.0" layoutY="134.0" prefHeight="25.0" prefWidth="149.0" promptText="Fecha envasado" />
+                  <ComboBox fx:id="comboBoxTipoProducto" onAction="#comboxEnvasado" prefWidth="150.0" promptText="Tipo producto">
+                     <HBox.margin>
+                        <Insets bottom="140.0" top="5.0" />
+                     </HBox.margin></ComboBox>
                </children>
-            </Pane>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="73.0" prefWidth="750.0" spacing="10.0">
+               <children>
+                  <Button fx:id="botonAgregar" mnemonicParsing="false" onAction="#botonRegistrar" prefHeight="25.0" prefWidth="208.0" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Agregar " />
+                  <Button fx:id="botonBuscar" mnemonicParsing="false" onAction="#buscarProducto" prefHeight="25.0" prefWidth="217.0" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Buscar " />
+                  <Button mnemonicParsing="false" onAction="#restaurarTabla" prefHeight="27.0" prefWidth="222.0" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Restablecer" />
+                  <Button fx:id="botonEliminar" mnemonicParsing="false" onAction="#botonEliminar" prefHeight="25.0" prefWidth="204.0" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Eliminar" />
+                  <Button fx:id="botonActulizar" mnemonicParsing="false" onAction="#actualizarProducto" prefHeight="27.0" prefWidth="194.0" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Actualizar" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <TableView fx:id="tableViewTablaMostrar" prefHeight="232.0" prefWidth="750.0" styleClass="sombraTabla-shadow" stylesheets="@../CSS/estilos.css">
+               <columns>
+                  <TableColumn fx:id="tableColumnCodigo" prefWidth="74.0" text="Codigo" />
+                  <TableColumn fx:id="tableColumnNombre" prefWidth="204.0" text="Nombre" />
+                  <TableColumn fx:id="tableColumnDescripcion" prefWidth="195.0" text="Descripcion" />
+                  <TableColumn fx:id="tableColumnValor" prefWidth="111.0" text="Valor" />
+                  <TableColumn fx:id="existencia" minWidth="0.0" prefWidth="161.0" text="Existencia" />
+               </columns>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </padding>
+            </TableView>
          </children>
-      </AnchorPane>
+      </VBox>
    </children>
 </AnchorPane>

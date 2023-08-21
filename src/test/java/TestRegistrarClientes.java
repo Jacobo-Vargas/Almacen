@@ -78,8 +78,10 @@ public class TestRegistrarClientes {
                 "444","33","d"));
         almacen.getListClientes().forEach(perso->System.out.println(perso));
         System.out.println();
-        almacen.getListClientes().get(0).setTelefono("32366");
+
         almacen.getListClientes().forEach(perso->System.out.println(perso));
+
+
 
     }
 
