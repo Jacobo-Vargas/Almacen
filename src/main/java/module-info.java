@@ -6,6 +6,5 @@ module Almacen {
     requires layout;
     exports model;
     exports controller;
-    exports main;
     opens controller;
 }

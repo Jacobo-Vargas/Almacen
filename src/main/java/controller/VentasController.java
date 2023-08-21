@@ -14,12 +14,16 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static java.lang.Integer.valueOf;
+
 
 public class VentasController {
     @FXML
     public Button btnVender;
     @FXML
     public Button btnAdd;
+    @FXML
+    public Button btnVaciar;
 
 
     @FXML
@@ -42,7 +46,7 @@ public class VentasController {
 
 
     @FXML
-    private TableColumn<DetalleVenta,Integer> columnaCantidad;
+    private TableColumn<DetalleVenta, Integer> columnaCantidad;
     @FXML
     private TableColumn<DetalleVenta, String> columnaCodigoPoducto;
     @FXML
@@ -50,29 +54,24 @@ public class VentasController {
     @FXML
     private TableColumn<DetalleVenta, Float> columnaSubtotal;
 
-    @FXML
-    private Label lbTotal;
-
-
 
     @FXML
     private TableView<DetalleVenta> tablaDetalle;
     @FXML
     private TableView<Venta> tablaVentas;
 
-    private ArrayList<DetalleVenta> detalles = new ArrayList<>();
+    private final ArrayList<DetalleVenta> detalles = new ArrayList<>();
     ObservableList<DetalleVenta> observableDetalleVenta;
     ObservableList<Venta> observableVenta;
 
 
     public void initialize() {
 
-        AlmacenInstance.INSTANCE.getAlmacen().registrarCliente(new ClientePersonaJuridica("Jacobo","Vargas","García","1094958613","Cerros del viento","3186569265","1094958613-1"));
-        AlmacenInstance.INSTANCE.getAlmacen().registrarCliente(new ClientePersonaNatural("Juan","Buitrago","piragua","1234567890","Barrio quindio","3112360897","juan123@gmail.com", LocalDate.of(2004,2,23)));
+        AlmacenInstance.INSTANCE.getAlmacen().registrarCliente(new ClientePersonaJuridica("Jacobo", "Vargas", "García", "1094958613", "Cerros del viento", "3186569265", "1094958613-1"));
+        AlmacenInstance.INSTANCE.getAlmacen().registrarCliente(new ClientePersonaNatural("Juan", "Buitrago", "piragua", "1234567890", "Barrio quindio", "3112360897", "juan123@gmail.com", LocalDate.of(2004, 2, 23)));
 
-        AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(new ProductoRefrigerado("02","helado","Helado sabor a fresa",2900,25,"A01",-18));
-        AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(new ProductoPerecedero("03","atun","Atun en aceite",7500,15,LocalDate.of(2024,5,24)));
-
+        AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(new ProductoRefrigerado("02", "helado", "Helado sabor a fresa", 2900, 25, "A01", -18));
+        AlmacenInstance.INSTANCE.getAlmacen().registrarProducto(new ProductoPerecedero("03", "atun", "Atun en aceite", 7500, 15, LocalDate.of(2024, 5, 24)));
 
 
         // se asignan los productos agregados a la lista observable
@@ -91,7 +90,9 @@ public class VentasController {
         observableVenta = FXCollections.observableArrayList(AlmacenInstance.INSTANCE.getAlmacen().getListVentas());
         tablaVentas.setItems(observableVenta);
 
-        clmCienteVenta.setCellValueFactory(cellData -> {return new SimpleStringProperty(txtCedulaCliente.getText());});
+        clmCienteVenta.setCellValueFactory(cellData -> {
+            return new SimpleStringProperty(txtCedulaCliente.getText());
+        });
         clmCodigoVenta.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         clmFechaVenta.setCellValueFactory(new PropertyValueFactory<>("fechaVenta"));
         clmIvaVenta.setCellValueFactory(new PropertyValueFactory<>("iva"));
@@ -102,47 +103,81 @@ public class VentasController {
 
     @FXML
     void addDetalle() {
-        DetalleVenta detalle = new DetalleVenta(Integer.parseInt(txtCantidadProductos.getText()), txtCodigoProducto.getText());
-        System.out.println(detalle.getSubtotal());
-        detalles.add(detalle);
-        observableDetalleVenta.add(detalle);
+        try {
+            if(Utils.verificarExistencia(txtCodigoProducto.getText(), Integer.parseInt(txtCantidadProductos.getText()))){
 
-        tablaDetalle.refresh();
-        System.out.println("Se añadio");
+                DetalleVenta detalle = new DetalleVenta(Integer.parseInt(txtCantidadProductos.getText()), txtCodigoProducto.getText());
+                System.out.println(detalle.getSubtotal());
+                detalles.add(detalle);
+                observableDetalleVenta.add(detalle);
+
+                tablaDetalle.refresh();
+                System.out.println("Se añadio");
+            }else{
+                Utils.alertaCantidadSuperada();
+            }
+
+
+
+        }catch (Exception e){
+            if(!(Utils.esCompatibleNumeros(txtCedulaCliente.getText()))){
+                Utils.alertaCedula();
+            }else if(!(Utils.esCompatibleNumeros(txtCantidadProductos.getText()))){
+                Utils.alertaCantidad();
+            }else if(!(Utils.esCompatibleNumeros(txtCodigoProducto.getText()))){
+                Utils.alertaProducto();
+            }
+        }
+
     }
 
 
     @FXML
     void addVenta() throws IOException {
-        for (Cliente c: AlmacenInstance.INSTANCE.getAlmacen().getListClientes()) {
-            if(c.getNumeroIdentificacion().equals(txtCedulaCliente.getText())){
-                Venta venta = new Venta(c,19);
+        if (!detalles.isEmpty()) {
+            for (Cliente c : AlmacenInstance.INSTANCE.getAlmacen().getListClientes()) {
+                if (c.getNumeroIdentificacion().equals(txtCedulaCliente.getText())) {
+                    Venta venta = new Venta(c, 19);
 
-                // se le asigna la lista de detalles a la venta
-                venta.setDetalleVenta(detalles);
-                // se guarda la venta en el almacen
-                AlmacenInstance.INSTANCE.getAlmacen().getListVentas().add(venta);
+                    // se le asigna la lista de detalles a la venta
+                    venta.setDetalleVenta(detalles);
+                    // se guarda la venta en el almacen
+                    AlmacenInstance.INSTANCE.getAlmacen().getListVentas().add(venta);
 
-                System.out.println(AlmacenInstance.INSTANCE.getAlmacen().getListVentas().size());
-                System.out.println(venta.calcularTotal());
-                observableVenta.add(venta);
-                GenerarReporte.generarPDFVenta(venta);
+                    System.out.println(AlmacenInstance.INSTANCE.getAlmacen().getListVentas().size());
+                    System.out.println(venta.calcularTotal());
+                    observableVenta.add(venta);
+                    GenerarReporte.generarPDFVenta(venta);
+                }
             }
+            removeItems();
+        }else{
+            Utils.mostrarAlertaCanastaVacia();
         }
+    }
 
-        detalles.clear();
-        observableDetalleVenta.clear();
+    @FXML
+    void removeItems() {
+        if(detalles.isEmpty()){
+            Utils.alertaListaVacia();
+        }else{
+            detalles.clear();
+            observableDetalleVenta.clear();
+        }
 
     }
 
-    public String consultarNombreProducto(String codigoProducto){
+
+    public String consultarNombreProducto(String codigoProducto) {
         String nombreProducto = "";
-        for (Producto p: AlmacenInstance.INSTANCE.getAlmacen().getListProductos()) {
-            if(p.getCodigoProducto().equals(codigoProducto)){
+        for (Producto p : AlmacenInstance.INSTANCE.getAlmacen().getListProductos()) {
+            if (p.getCodigoProducto().equals(codigoProducto)) {
                 nombreProducto = p.getNombreProducto();
                 break; //break para mejorar la eficiencia
             }
         }
         return nombreProducto;
     }
+
+
 }

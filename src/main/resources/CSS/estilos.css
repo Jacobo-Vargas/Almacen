@@ -1,0 +1,19 @@
+.btn:hover{
+    -fx-border-color: rgb(0, 42, 255);
+    -fx-border-radius: 3px;
+}
+.btn{
+    -fx-border-color: black;
+    -fx-border-radius: 3px;
+}
+.sombraTabla{
+    -fx-background-radius: 10; /* Ajusta este valor para cambiar el redondeo */
+    -fx-border-radius: 10; /* Ajusta este valor para cambiar el redondeo */
+    -fx-background-color: white; /* Color de fondo */
+    -fx-border-color: #464242; /* Color del borde */
+    -fx-border-width: 1; /* Ancho del borde */
+}
+.sombraTabla-shadow{
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);
+    -fx-background-color: white; /* Color de fondo */
+}

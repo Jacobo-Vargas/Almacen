@@ -140,7 +140,7 @@ public class Almacen {
         boolean respuesta = false;
         try {
             for (int i = 0; i < listProductos.size(); i++) {
-                if (listProductos.get(i).getCantidadExistente()==existencia) {
+                if (listProductos.get(i).getCantidadExistente() == existencia) {
                     return listProductos.get(i);
                 }
             }

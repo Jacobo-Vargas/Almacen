@@ -13,7 +13,6 @@ public class DetalleVenta {
     }
 
     public boolean consultarDisponibilidad() {
-
         return AlmacenInstance.INSTANCE.getAlmacen()
                 .getListProductos()
                 .stream()
