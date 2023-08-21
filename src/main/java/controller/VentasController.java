@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
 
 
@@ -147,6 +148,10 @@ public class VentasController {
                     venta.setDetalleVenta(detalles);
                     // se guarda la venta en el almacen
                     AlmacenInstance.INSTANCE.getAlmacen().getListVentas().add(venta);
+
+                    // este util descuenta los productos de inventario
+                    Utils.descontar(txtCodigoProducto.getText(),txtCantidadProductos.getText());
+
 
                     System.out.println(AlmacenInstance.INSTANCE.getAlmacen().getListVentas().size());
                     System.out.println(venta.calcularTotal());
