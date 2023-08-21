@@ -42,7 +42,44 @@ public class Utils {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("PRODUCTO INVALIDO");
         alerta.setHeaderText("Producto");
-        alerta.setContentText("por favor verifique el producto.");
+        alerta.setContentText("No se puede cambiar el codigo del producto");
+        alerta.showAndWait();
+    }
+    public static void alertaProductoBusqueda() {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("PRODUCTO ENCONTRADO ");
+        alerta.setHeaderText("Producto");
+        alerta.setContentText("Producto encontrado con exito");
+        alerta.showAndWait();
+    }
+
+
+    public static void alertaProductoError() {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("PRODUCTO NO AGREGADO");
+        alerta.setHeaderText("Producto");
+        alerta.setContentText("no se puede agregar el producto verifique los campos");
+        alerta.showAndWait();
+    }
+    public static void alertaProductoActulizado() {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("PRODUCTO ACTUALIZADO");
+        alerta.setHeaderText("Producto");
+        alerta.setContentText("Producto actualizado con exito");
+        alerta.showAndWait();
+    }
+    public static void alertaProductoAgregadoExito() {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("PRODUCTO AGREGADO");
+        alerta.setHeaderText("Producto");
+        alerta.setContentText("El producto se agrego correctamente");
+        alerta.showAndWait();
+    }
+    public static void alertaProductoExistente() {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("PRODUCTO YA EXISTENTE");
+        alerta.setHeaderText("Producto");
+        alerta.setContentText("El producto ya existe");
         alerta.showAndWait();
     }
 
