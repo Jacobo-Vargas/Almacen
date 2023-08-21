@@ -104,29 +104,33 @@ public class VentasController {
     @FXML
     void addDetalle() {
         try {
-            if(Utils.verificarExistencia(txtCodigoProducto.getText(), Integer.parseInt(txtCantidadProductos.getText()))){
 
+            if (txtCodigoProducto.getText().isEmpty() || txtCantidadProductos.getText().isEmpty() || txtCedulaCliente.getText().isEmpty()) {
+                Utils.mostrarAlertaCamposVacios();
+            } else if (!(Utils.verificarProducto(txtCodigoProducto.getText()))) {
+                Utils.alertaProducto();
+            } else if (!(Utils.verificarCedula(txtCedulaCliente.getText()))) {
+                Utils.alertaCedula();
+            } else if (!(Utils.verificarExistencia(txtCodigoProducto.getText(), Integer.parseInt(txtCantidadProductos.getText())))) {
+                Utils.alertaCantidadSuperada();
+            } else {
                 DetalleVenta detalle = new DetalleVenta(Integer.parseInt(txtCantidadProductos.getText()), txtCodigoProducto.getText());
                 System.out.println(detalle.getSubtotal());
                 detalles.add(detalle);
                 observableDetalleVenta.add(detalle);
-
                 tablaDetalle.refresh();
-                System.out.println("Se añadio");
-            }else{
-                Utils.alertaCantidadSuperada();
+                txtCedulaCliente.setDisable(true);
+
             }
 
 
-
-        }catch (Exception e){
-            if(!(Utils.esCompatibleNumeros(txtCedulaCliente.getText()))){
+        } catch (Exception e) {
+          if (!(Utils.esCompatibleNumeros(txtCedulaCliente.getText()))) {
                 Utils.alertaCedula();
-            }else if(!(Utils.esCompatibleNumeros(txtCantidadProductos.getText()))){
+            } else if (!(Utils.esCompatibleNumeros(txtCantidadProductos.getText()))) {
                 Utils.alertaCantidad();
-            }else if(!(Utils.esCompatibleNumeros(txtCodigoProducto.getText()))){
-                Utils.alertaProducto();
             }
+
         }
 
     }
@@ -148,21 +152,23 @@ public class VentasController {
                     System.out.println(venta.calcularTotal());
                     observableVenta.add(venta);
                     GenerarReporte.generarPDFVenta(venta);
+                    txtCedulaCliente.setDisable(false);
                 }
             }
             removeItems();
-        }else{
+        } else {
             Utils.mostrarAlertaCanastaVacia();
         }
     }
 
     @FXML
     void removeItems() {
-        if(detalles.isEmpty()){
+        if (detalles.isEmpty()) {
             Utils.alertaListaVacia();
-        }else{
+        } else {
             detalles.clear();
             observableDetalleVenta.clear();
+            txtCedulaCliente.setDisable(false);
         }
 
     }

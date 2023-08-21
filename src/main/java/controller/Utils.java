@@ -22,12 +22,19 @@ public class Utils {
         alerta.setContentText("por favor registre al menos un producto");
         alerta.showAndWait();
     }
+    public static void mostrarAlertaCamposVacios() {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("LLENE LOS CAMPOS");
+        alerta.setHeaderText("Campos vacios");
+        alerta.setContentText("por favor asegurese de diligenciar todos los campos.");
+        alerta.showAndWait();
+    }
 
     public static void alertaCedula() {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("CEDULA INVALIDA");
         alerta.setHeaderText("Cedula");
-        alerta.setContentText("por favor verifique el numero de cedula, solo se aceptan numeros sin espacios ni comas.");
+        alerta.setContentText("por favor verifique el numero de cedula que sea correcto, solo se aceptan numeros sin espacios ni comas.");
         alerta.showAndWait();
     }
 
@@ -35,7 +42,7 @@ public class Utils {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("PRODUCTO INVALIDO");
         alerta.setHeaderText("Producto");
-        alerta.setContentText("por favor verifique el productos, solo se aceptan letras y números.");
+        alerta.setContentText("por favor verifique el producto.");
         alerta.showAndWait();
     }
 
@@ -84,13 +91,21 @@ public class Utils {
     public  static boolean verificarExistencia(String producto,int numero){
         boolean verificacion = false;
         for (Producto p: INSTANCE.getAlmacen().getListProductos()) {
-            if(p.getCodigoProducto().equals(producto) && p.getCantidadExistente() >= numero){
+            if((p.getCodigoProducto().equals(producto)) && (p.getCantidadExistente() >= numero)){
                 verificacion = true;
                 break;
             }
-
         }
         return verificacion;
+    }
+
+    public static boolean verificarProducto(String product){
+        return INSTANCE.getAlmacen().getListProductos()
+                .stream().anyMatch(producto -> producto.getCodigoProducto().equals(product));
+    }
+    public static boolean verificarCedula(String cedula){
+        return INSTANCE.getAlmacen().getListClientes()
+                .stream().anyMatch(cliente -> cliente.getNumeroIdentificacion().equals(cedula));
     }
 
     // metodo que me verifica si solo existen numeros en una cadena de texto
