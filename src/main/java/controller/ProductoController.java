@@ -19,7 +19,6 @@ public class ProductoController {
     @FXML
     public Button botonEliminar;
     @FXML
-
     public TextField textFieldCodigo;
     @FXML
     public TextField textFieldDescripcion;

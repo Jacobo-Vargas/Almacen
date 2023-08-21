@@ -166,4 +166,28 @@ public class Utils {
             }
         }
     }
+    public static boolean verificarTexto(String nombre){
+
+        String regex = "^[a-zA-Z]+$";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(nombre);
+
+        return matcher.matches();
+
+
+    }
+
+    public static boolean verificarEspacios(String nombre){
+
+        String regex = "^[^\\s]+$";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(nombre);
+
+        return matcher.matches();
+
+
+    }
+
 }

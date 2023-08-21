@@ -173,13 +173,21 @@ public class Almacen {
 
 
     public void registrarCliente(Cliente cliente) {
-
+        boolean bandera = false;
         try {
-            if (listClientes.stream().anyMatch(cliente1 -> cliente1.getNumeroIdentificacion().equals(cliente.getNumeroIdentificacion()))) {
-                System.out.println("El cliente ya esta registrado");
-            } else {
-                listClientes.add(cliente);
+
+            for (Cliente c : listClientes) {
+                if (c.getNumeroIdentificacion().equals(cliente.getNumeroIdentificacion())) {
+                    bandera = true;
+                    break;
+                }
+
             }
+            if(!bandera ){
+                listClientes.add(cliente);
+                System.out.println("Cliente registrado");
+            }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

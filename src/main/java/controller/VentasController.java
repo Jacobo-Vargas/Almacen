@@ -140,7 +140,7 @@ public class VentasController {
     @FXML
     void addVenta() throws IOException {
         if (!detalles.isEmpty()) {
-            for (Cliente c : AlmacenInstance.INSTANCE.getAlmacen().getListClientes()) {
+            for (Cliente c: AlmacenInstance.INSTANCE.getAlmacen().getListClientes()) {
                 if (c.getNumeroIdentificacion().equals(txtCedulaCliente.getText())) {
                     Venta venta = new Venta(c, 19);
 
