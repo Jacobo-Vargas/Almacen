@@ -21,16 +21,8 @@ public class DetalleVenta {
 
     }
 
-    public void descontarProductos(){
-        for (Producto p: AlmacenInstance.INSTANCE.getAlmacen().getListProductos()) {
-            if(p.getCodigoProducto().equals(productoVendido)){
-                p.setCantidadExistente(p.getCantidadExistente()-cantidadProductos);
-            }
-        }
-    }
     public float subtotalPagar(){
         if(consultarDisponibilidad()){
-            descontarProductos();
             subtotal = obtenerPrecioProducto()*cantidadProductos;
         }else{
             subtotal = 0;

@@ -85,8 +85,12 @@ public class ProductoController {
         textFieldCodigoAprobacion.setVisible(false);
         textFieldTemratura.setVisible(false);
         DatePickerFechaEnvasado.setVisible(false);
+
+
         comboBoxTipoProducto.getItems().addAll(EnumProducto.values());
         comboBoxPais.getItems().addAll(PaisOrigen.values());
+
+
         tableViewTablaMostrar.setOnMouseClicked(even->{
             if(even.getClickCount()==1){
                 Producto selecion= (Producto) tableViewTablaMostrar.getSelectionModel().getSelectedItem();

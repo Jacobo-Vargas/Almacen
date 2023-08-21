@@ -2,12 +2,14 @@ package controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextFormatter;
+import model.AlmacenInstance;
 import model.Producto;
 
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Integer.parseInt;
 import static model.AlmacenInstance.INSTANCE;
 
 public class Utils {
@@ -155,5 +157,13 @@ public class Utils {
         Matcher matcher = pattern.matcher(txt);
 
         return matcher.matches();
+    }
+
+    public static void descontar(String producto,String cantidad){
+        for (Producto p: AlmacenInstance.INSTANCE.getAlmacen().getListProductos()) {
+            if(p.getCodigoProducto().equals(producto)){
+                p.setCantidadExistente(p.getCantidadExistente()-parseInt(cantidad));
+            }
+        }
     }
 }

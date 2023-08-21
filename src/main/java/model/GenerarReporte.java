@@ -4,11 +4,8 @@ package model;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.LineSeparator;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import model.DetalleVenta;
-import model.Venta;
 
 import java.io.IOException;
 
@@ -49,7 +46,7 @@ public class GenerarReporte {
             table.addCell("Codigo producto   ");
             table.addCell("Nombre del producto");
             table.addCell("Subtotal   ");
-            table.addFooterCell(valueOf("total a pagar: "+ venta.calcularTotal()));
+            table.addFooterCell("total a pagar: "+ venta.calcularTotal());
 
             for (DetalleVenta detalle : venta.getDetalleVenta()) {
                 table.addCell(valueOf(detalle.getCantidadProductos()));
