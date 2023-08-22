@@ -19,9 +19,7 @@ public class Almacen {
             if (getListProductos().stream().anyMatch(producto1 -> producto1.getCodigoProducto().equals(producto.getCodigoProducto()))) {
                 Utils.alertaProductoExistente();
             } else {
-                System.out.println("Se agrego");
                 listProductos.add(producto);
-                Utils.alertaProductoAgregadoExito();
             }
 
         } catch (Exception e) {
