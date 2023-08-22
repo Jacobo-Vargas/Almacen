@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClienteController">
     <children>
         <VBox prefHeight="469.0" prefWidth="750.0" spacing="10.0">
             <children>
@@ -71,7 +71,7 @@
                                 <Label prefHeight="25.0" prefWidth="99.0" text="Primer apellido:" GridPane.rowIndex="2" />
                                 <Label prefHeight="25.0" prefWidth="99.0" text="Direccion:" GridPane.rowIndex="5" />
                                 <Label text="Telefono:" GridPane.rowIndex="6" />
-                                <ComboBox fx:id="comboBoxTipoPersona" prefHeight="25.0" prefWidth="157.0" promptText="Tipo persona" />
+                                <ComboBox fx:id="comboBoxTipoPersona" onAction="#comboTipoPersona" prefHeight="25.0" prefWidth="157.0" promptText="Tipo persona" />
                                 <Label prefHeight="25.0" prefWidth="68.0" text="Correo:" GridPane.rowIndex="8" />
                                 <Label prefHeight="25.0" prefWidth="149.0" text="Fecha de nacimiento:" GridPane.rowIndex="9" />
                         <Label prefHeight="25.0" prefWidth="99.0" text="Segundo apellido:" GridPane.rowIndex="3" />
@@ -87,10 +87,10 @@
                 </HBox>
                 <HBox alignment="TOP_RIGHT" prefHeight="72.0" prefWidth="750.0" spacing="30.0">
                     <children>
-                        <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#btnRegistrar" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Registrar" />
-                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#btnEliminar" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Eliminar" />
-                        <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#btnActualizar" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Actualizar" />
-                        <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#btnBuscar" prefHeight="26.0" prefWidth="79.0" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Buscar" />
+                        <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#botonRegistrar" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Registrar" />
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#botonEliminar" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Eliminar" />
+                        <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#botonActualizar" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Actualizar" />
+                        <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#botonBuscar" prefHeight="26.0" prefWidth="79.0" styleClass="btn" stylesheets="@../CSS/estilos.css" text="Buscar" />
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -99,7 +99,7 @@
                 <TableView fx:id="tableViewTablaMostrar" prefHeight="172.0" prefWidth="750.0" styleClass="sombraTabla-shadow" stylesheets="@../CSS/estilos.css">
                     <columns>
                         <TableColumn fx:id="tableColumnNombre" prefWidth="85.0" text="Nombre" />
-                        <TableColumn fx:id="tableColumnPrimerApellido" prefWidth="103.0" text="Apellido" />
+                        <TableColumn fx:id="tableColumnApellido" prefWidth="103.0" text="Apellido" />
                         <TableColumn fx:id="tableColumnDocumento" prefWidth="95.0" text="Documento" />
                         <TableColumn fx:id="tableColumnDireccion" minWidth="0.0" prefWidth="91.0" text="Direccion" />
                         <TableColumn fx:id="tableColumnTelefono" minWidth="0.0" prefWidth="97.0" text="Telefono" />

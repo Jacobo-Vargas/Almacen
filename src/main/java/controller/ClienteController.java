@@ -3,6 +3,7 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,22 +18,28 @@ public class ClienteController {
     public TextField textFieldNombre;
 
     @FXML
-    public TextField textFieldAPrimerApellido;
+    private TextField textFieldCorreo;
 
     @FXML
-    public TextField textFieldSegundoApellido;
+    private TextField textFieldDireccion;
+
     @FXML
+    private TextField textFieldDocumento;
+
+    @FXML
+    private TextField textFieldNit;
+
+    @FXML
+    private TextField textFieldPrimerApellido;
+
+    @FXML
+    private TextField textFieldSegundoApellido;
+
+    @FXML
+    private TextField textFieldTelefono;
+
     public ComboBox<EnumTipoPersona> comboBoxTipoPersona;
-    @FXML
-    public TextField textFieldApellido;
-    @FXML
-    public TextField textFieldDocumento;
-    @FXML
-    public TextField textFieldDireccion;
-    @FXML
-    public TextField textFieldTelefono;
-    @FXML
-    public TextField textFieldCorreo;
+
     @FXML
     public DatePicker DatePickerFechaNacimiento;
     @FXML
@@ -54,12 +61,19 @@ public class ClienteController {
     @FXML
     public TableColumn<Cliente, DatePicker> tableColumnFechaNacimiento;
 
-    @FXML
-    public TextField textFieldNit;
+
+    //public TextField textFieldNit;
     @FXML
     public Button btnRegistrar;
     @FXML
     public Button btnEliminar;
+
+    @FXML
+    public DatePicker textFieldFechaNacimiento;
+    @FXML
+    public Button btnActualizar;
+    @FXML
+    public Button btnBuscar;
 
     @FXML
     ObservableList<Cliente> cliente;
@@ -75,6 +89,7 @@ public class ClienteController {
         tableColumnDocumento.setCellValueFactory(new PropertyValueFactory<>("numeroIdentificacion"));
         tableColumnDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
         tableColumnTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        //tableColumnNit.setCellValueFactory(new PropertyValueFactory<>("Nit"));
         //tableColumnCorreo.setCellValueFactory(new PropertyValueFactory<>("email"));
         //tableColumnFechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
 
@@ -85,17 +100,18 @@ public class ClienteController {
 
     }
 
-    /**public void botonRegistrar() {
+
+
+
+    public void botonRegistrar() {
         String nombre = textFieldNombre.getText();
-        String primerApellido = textFieldAPrimerApellido.getText();
+        String primerApellido = textFieldPrimerApellido.getText();
         String segundoApellido = textFieldSegundoApellido.getText();
         String numeroId = textFieldDocumento.getText();
         String correo = textFieldCorreo.getText();
         String telefono = textFieldTelefono.getText();
         String direccion = textFieldDireccion.getText();
-
         String nit = textFieldNit.getText();
-
         LocalDate fechaN = DatePickerFechaNacimiento.getValue();
 
         try {
@@ -150,8 +166,31 @@ public class ClienteController {
 
     }
 
-    public void botonActualizar() {
-    }**/
+    public void botonBuscar() {
+        DatePickerFechaNacimiento.setVisible(false);
+        textFieldNombre.setVisible(false);
+        comboBoxTipoPersona.setVisible(false);
+        textFieldDocumento.setVisible(false);
+        textFieldCorreo.setVisible(false);
+        textFieldDireccion.setVisible(false);
+        textFieldTelefono.setVisible(false);
 
+        String documento = textFieldDocumento.getText();
+        String nombre = textFieldNombre.getText();
+
+        if (documento.isEmpty() == false) {
+            Producto producto = AlmacenInstance.INSTANCE.getAlmacen().buscarProductoCodigo(documento);
+            ObservableList<Producto> mostrar = FXCollections.singletonObservableList(producto);
+            tableViewTablaMostrar.refresh();
+            Utils.alertaProductoBusqueda();
+        } else if (nombre.isEmpty() == false) {
+            Producto producto = AlmacenInstance.INSTANCE.getAlmacen().buscarProductoNombre(nombre);
+            ObservableList<Producto> mostrar = FXCollections.singletonObservableList(producto);
+            tableViewTablaMostrar.refresh();
+            Utils.alertaProductoBusqueda();
+        }
+    }
+    public void botonActualizar() {
+    }
 }
 
