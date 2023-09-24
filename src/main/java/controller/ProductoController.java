@@ -74,7 +74,7 @@ public class ProductoController {
         tableColumnDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcionProducto"));
         ;
         tableColumnValor.setCellValueFactory(new PropertyValueFactory<>("valorUnitario"));
-        //tableColumnPeso.setCellValueFactory(new PropertyValueFactory<>("pesoProducto"));
+
         ;
         existencia.setCellValueFactory(new PropertyValueFactory<>("cantidadExistente"));
 
@@ -101,10 +101,7 @@ public class ProductoController {
                 textFieldValor.setText(String.valueOf(selecion.getValorUnitario()));
                 textFieldExistencia.setText(String.valueOf(selecion.getCantidadExistente()));
 
-                if(selecion !=null){
-                    System.out.println("selecion "+selecion.getNombreProducto());
 
-                }
             }
         });
 
@@ -288,14 +285,13 @@ public class ProductoController {
     }
     public void actualizarProducto(){
         boolean anuncio=false;
-        boolean  no=false;
+
         textFieldCodigo.setVisible(true);
         textFieldNombre.setVisible(true);
         textFieldDescripcion.setVisible(true);
         textFieldValor.setVisible(true);
         textFieldExistencia.setVisible(true);
         int indice = 0;
-        String codigo=textFieldCodigo.getText();
         String nombre=textFieldNombre.getText();
         String descripcion=textFieldDescripcion.getText();
         float valor= Float.parseFloat(textFieldValor.getText());
@@ -307,13 +303,6 @@ public class ProductoController {
         comboBoxPais.setVisible(false);
         DatePickerFechaVencimiento.setVisible(false);
         DatePickerFechaEnvasado.setVisible(false);
-        if(productoSelecionado.getCodigoProducto() !=codigo){
-            no=true;
-        }
-
-
-
-
 
 
         if(productoSelecionado.getNombreProducto() !=nombre){
